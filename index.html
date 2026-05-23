@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Școala Gimnazială Nr. 6 Râmnicu Sărat</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--navy:#1a3a6b;--navy2:#0f2347;--gold:#c8a020;--gold2:#e8b830;--white:#fff;--light:#f3f6fc;--border:#dde4f0;--text:#1e2a3a;--muted:#5a6a8a;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--light);color:var(--text);font-size:15px;line-height:1.6;}
+.topbar{background:var(--navy2);color:rgba(255,255,255,.72);font-size:.73rem;text-align:center;padding:6px 20px;letter-spacing:.04em;}
+.topbar b{color:var(--gold2);}
+header{background:var(--white);border-bottom:3px solid var(--gold);box-shadow:0 2px 16px rgba(26,58,107,.1);position:sticky;top:0;z-index:999;}
+.hdr{max-width:1300px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px;}
+.logo{display:flex;align-items:center;gap:13px;text-decoration:none;cursor:pointer;}
+.logo-badge{width:46px;height:46px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;}
+.logo-badge img{width:100%;height:100%;object-fit:cover;}
+.logo-info h1{font-family:'Merriweather',serif;font-size:.95rem;color:var(--navy);line-height:1.25;}
+.logo-info p{font-size:.67rem;color:var(--muted);margin-top:1px;}
+.hdr-logos{display:flex;align-items:center;gap:12px;}
+.hdr-logos a img{height:34px;object-fit:contain;}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-direction:column;gap:5px;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;}
+nav{background:var(--navy);}
+.nw{max-width:1300px;margin:0 auto;padding:0 24px;display:flex;flex-wrap:wrap;list-style:none;}
+.ni{position:relative;}
+.ni>a,.ni>span{display:flex;align-items:center;gap:4px;padding:11px 12px;color:rgba(255,255,255,.88);text-decoration:none;font-size:.74rem;font-weight:500;letter-spacing:.03em;white-space:nowrap;cursor:pointer;border-bottom:3px solid transparent;transition:all .18s;}
+.ni>a:hover,.ni>span:hover,.ni:hover>a,.ni:hover>span{color:#fff;background:rgba(255,255,255,.07);border-bottom-color:var(--gold);}
+.ni>a.act{border-bottom-color:var(--gold);color:#fff;}
+.arr{font-size:.5rem;opacity:.55;transition:transform .2s;}
+.ni:hover .arr{transform:rotate(180deg);}
+.dd{display:none;position:absolute;top:100%;left:0;background:var(--white);min-width:270px;max-width:360px;border-top:3px solid var(--gold);box-shadow:0 10px 32px rgba(26,58,107,.18);border-radius:0 0 10px 10px;z-index:2000;list-style:none;}
+.ni:hover>.dd{display:block;}
+.dd li{border-bottom:1px solid var(--border);}
+.dd li:last-child{border-bottom:none;}
+.dd li a{display:block;padding:9px 16px 9px 26px;font-size:.76rem;color:var(--navy);text-decoration:none;position:relative;transition:all .14s;}
+.dd li a::before{content:'›';position:absolute;left:10px;color:var(--gold);font-size:1rem;top:50%;transform:translateY(-50%);opacity:0;transition:.14s;}
+.dd li a:hover{background:#f0f5ff;padding-left:30px;}
+.dd li a:hover::before{opacity:1;}
+.has-s{position:relative;}
+.has-s>a::after{content:' ›';float:right;color:var(--gold);}
+.ss{display:none;position:absolute;left:100%;top:0;background:var(--white);min-width:230px;border-left:3px solid var(--gold);box-shadow:0 10px 32px rgba(26,58,107,.15);border-radius:0 10px 10px 0;z-index:3000;list-style:none;}
+.has-s:hover>.ss{display:block;}
+.ss li{border-bottom:1px solid var(--border);}
+.ss li a{display:block;padding:9px 14px 9px 18px;font-size:.76rem;color:var(--navy);text-decoration:none;transition:all .14s;}
+.ss li a:hover{background:#f0f5ff;}
+.pg{display:none;}.pg.on{display:block;}
+/* HERO */
+.hero{position:relative;min-height:440px;display:flex;align-items:center;overflow:hidden;}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,22,50,.85) 0%,rgba(10,22,50,.5) 60%,rgba(10,22,50,.1) 100%);}
+.hero-body{position:relative;z-index:2;max-width:1300px;margin:0 auto;padding:60px 24px;width:100%;}
+.hero-tag{display:inline-block;background:rgba(200,160,32,.25);border:1px solid var(--gold);color:var(--gold2);font-size:.7rem;font-weight:600;letter-spacing:.1em;padding:4px 14px;border-radius:20px;margin-bottom:18px;text-transform:uppercase;}
+.hero-body h2{font-family:'Merriweather',serif;color:#fff;font-size:1.85rem;max-width:560px;line-height:1.3;margin-bottom:14px;}
+.hero-body p{color:rgba(255,255,255,.78);max-width:460px;font-size:.9rem;margin-bottom:26px;}
+.btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-g{background:var(--gold);color:var(--navy2);padding:11px 24px;border-radius:8px;font-weight:700;font-size:.84rem;cursor:pointer;border:none;transition:all .2s;}
+.btn-g:hover{background:var(--gold2);}
+.btn-w{border:2px solid rgba(255,255,255,.45);color:#fff;padding:11px 24px;border-radius:8px;font-weight:500;font-size:.84rem;cursor:pointer;background:none;transition:all .2s;}
+.btn-w:hover{border-color:#fff;background:rgba(255,255,255,.1);}
+.stats{background:var(--white);border-bottom:1px solid var(--border);}
+.stats-in{max-width:1300px;margin:0 auto;padding:14px 24px;display:grid;grid-template-columns:repeat(4,1fr);}
+.st{text-align:center;padding:10px 12px;border-right:1px solid var(--border);}
+.st:last-child{border-right:none;}
+.st-n{font-family:'Merriweather',serif;font-size:1.6rem;font-weight:700;color:var(--navy);}
+.st-l{font-size:.67rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px;}
+.sec{padding:44px 24px;}
+.sec-in{max-width:1300px;margin:0 auto;}
+.sec-hd{margin-bottom:28px;}
+.sec-hd h3{font-family:'Merriweather',serif;font-size:1.35rem;color:var(--navy);margin-bottom:5px;}
+.sec-hd p{color:var(--muted);font-size:.85rem;}
+.ln{width:44px;height:3px;background:var(--gold);border-radius:2px;margin-top:10px;}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;}
+.card{background:var(--white);border-radius:12px;border:1px solid var(--border);overflow:hidden;transition:all .22s;cursor:pointer;}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(26,58,107,.13);border-color:var(--gold);}
+.card-img{width:100%;height:125px;object-fit:cover;display:block;}
+.card-ph{width:100%;height:125px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:2.2rem;}
+.cbody{padding:13px 16px;}
+.cbody p{font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:9px;}
+.clink{font-size:.76rem;font-weight:600;color:var(--navy);cursor:pointer;}
+.clink:hover{color:var(--gold);}
+.ngrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:15px;}
+.nc{background:var(--white);border-radius:12px;border:1px solid var(--border);padding:17px;transition:all .2s;}
+.nc:hover{border-color:var(--gold);box-shadow:0 4px 16px rgba(26,58,107,.09);}
+.nc-tag{display:inline-block;background:#eef3fb;color:var(--navy);font-size:.64rem;font-weight:700;padding:3px 9px;border-radius:12px;margin-bottom:9px;text-transform:uppercase;letter-spacing:.05em;}
+.nc h4{font-size:.86rem;font-weight:600;color:var(--text);margin-bottom:5px;line-height:1.4;}
+.nc p{font-size:.78rem;color:var(--muted);line-height:1.6;}
+/* PAGE */
+.ph{background:var(--navy);padding:30px 24px;}
+.ph-in{max-width:1300px;margin:0 auto;}
+.ph h2{font-family:'Merriweather',serif;color:#fff;font-size:1.4rem;}
+.ph p{color:rgba(255,255,255,.62);font-size:.8rem;margin-top:4px;}
+.bc{background:#eef3fb;padding:8px 24px;border-bottom:1px solid var(--border);}
+.bc-in{max-width:1300px;margin:0 auto;font-size:.71rem;color:var(--muted);}
+.bc-in b{color:var(--navy);}
+.pc{max-width:1300px;margin:26px auto;padding:0 24px 50px;}
+.pc>p{font-size:.88rem;color:var(--text);line-height:1.8;margin-bottom:13px;}
+/* PDF BOX — design exact ca site original */
+.pw{margin:11px 0;background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(26,58,107,.06);}
+.ph2{background:var(--navy);padding:12px 16px;display:flex;align-items:center;gap:11px;}
+.ph2 .pi{font-size:1.3rem;flex-shrink:0;}
+.ph2 .pinfo{flex:1;min-width:0;}
+.ph2 .pinfo strong{color:#fff;font-size:.83rem;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ph2 .pinfo span{color:rgba(255,255,255,.48);font-size:.7rem;}
+.pacts{display:flex;gap:7px;flex-shrink:0;}
+.pacts a{padding:6px 12px;border-radius:7px;font-size:.72rem;font-weight:600;text-decoration:none;transition:all .18s;white-space:nowrap;cursor:pointer;}
+.bv{background:var(--gold);color:var(--navy2);}
+.bv:hover{background:var(--gold2);}
+.bd{background:rgba(255,255,255,.13);color:#fff;border:1px solid rgba(255,255,255,.25);}
+.bd:hover{background:rgba(255,255,255,.22);}
+.pviewer{display:none;width:100%;height:600px;border:none;background:#555;}
+.pviewer.open{display:block;}
+/* SECTIUNE IMAGINI */
+.img-row{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0;}
+.img-row img{max-width:100%;border-radius:10px;border:1px solid var(--border);max-height:400px;object-fit:contain;}
+/* DOC LINK */
+.doc-link{display:inline-flex;align-items:center;gap:8px;background:#eef3fb;border:1px solid var(--border);color:var(--navy);text-decoration:none;padding:9px 16px;border-radius:8px;font-size:.82rem;font-weight:600;margin:6px 0;transition:all .2s;}
+.doc-link:hover{background:var(--gold);color:var(--navy2);border-color:var(--gold);}
+.note{background:#fffbe6;border-left:4px solid var(--gold);padding:12px 16px;border-radius:0 10px 10px 0;margin:13px 0;font-size:.83rem;color:#4a3800;}
+.igrid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:16px 0;}
+.icard{background:#f3f6fc;border-radius:10px;padding:12px;border-left:4px solid var(--navy);}
+.icard .il{font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;}
+.icard .iv{font-size:.9rem;font-weight:600;color:var(--navy);}
+.tl{margin:18px 0;border-left:3px solid var(--gold);padding-left:20px;}
+.tl-i{margin-bottom:16px;position:relative;}
+.tl-i::before{content:'';position:absolute;left:-27px;top:4px;width:12px;height:12px;background:var(--gold);border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px var(--gold);}
+.tl-y{font-size:.7rem;font-weight:700;color:var(--gold);letter-spacing:.08em;margin-bottom:3px;}
+.tl-i p{font-size:.85rem;color:var(--text);line-height:1.65;margin:0;}
+.cgr2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.ccard{background:var(--white);border-radius:12px;border:1px solid var(--border);padding:18px;}
+.ccard h4{font-size:.92rem;font-weight:600;color:var(--navy);margin-bottom:12px;}
+.crow{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:.82rem;}
+.crow:last-child{border-bottom:none;}
+.crow .cl{color:var(--muted);min-width:82px;font-size:.75rem;}
+.crow .cv{color:var(--text);font-weight:500;}
+.crow .cv a{color:var(--navy);text-decoration:none;}
+.crow .cv a:hover{color:var(--gold);}
+footer{background:var(--navy2);color:rgba(255,255,255,.68);padding:38px 24px 20px;}
+.ft-in{max-width:1300px;margin:0 auto;}
+.ft-gr{display:grid;grid-template-columns:2fr 1fr 1fr;gap:36px;margin-bottom:24px;}
+.ft-col h5{color:#fff;font-size:.84rem;font-weight:600;margin-bottom:11px;padding-bottom:7px;border-bottom:1px solid rgba(255,255,255,.1);}
+.ft-col p{font-size:.76rem;line-height:1.7;}
+.ft-col ul{list-style:none;}
+.ft-col ul li{margin-bottom:6px;}
+.ft-col ul li a{color:rgba(255,255,255,.56);text-decoration:none;font-size:.76rem;cursor:pointer;transition:color .15s;}
+.ft-col ul li a:hover{color:var(--gold2);}
+.ft-bot{border-top:1px solid rgba(255,255,255,.1);padding-top:13px;display:flex;justify-content:space-between;font-size:.69rem;color:rgba(255,255,255,.3);}
+@media(max-width:900px){
+  .hamburger{display:flex;}
+  .nw{flex-direction:column;display:none;}
+  .nw.open{display:flex;}
+  .ni{width:100%;border-top:1px solid rgba(255,255,255,.08);}
+  .ni>a,.ni>span{padding:11px 18px;}
+  .dd,.ss{position:static;box-shadow:none;border:none;border-radius:0;background:rgba(0,0,0,.18);display:none!important;}
+  .dd.mob,.ss.mob{display:block!important;}
+  .dd li a{color:#cdd6ea;padding:8px 28px;}
+  .stats-in{grid-template-columns:1fr 1fr;}
+  .st{border-right:none;border-bottom:1px solid var(--border);}
+  .cgr2,.ft-gr,.igrid{grid-template-columns:1fr;}
+  .hdr-logos{display:none;}
+  .hero-body h2{font-size:1.4rem;}
+}
+
+/* ERASMUS */
+.ec{background:var(--white);border-radius:12px;border:1px solid var(--border);padding:20px;margin-bottom:12px;}
+.ec h3{font-family:'Merriweather',serif;font-size:1.05rem;color:var(--navy);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--gold);}
+.eh{margin-bottom:12px;}
+.ebg{display:inline-block;background:var(--navy);color:#fff;font-size:.68rem;font-weight:600;padding:3px 11px;border-radius:20px;margin-bottom:6px;}
+.eh h3{margin:4px 0 0;border:none;padding:0;}
+.egr{display:grid;grid-template-columns:1fr 130px;gap:16px;align-items:start;margin-bottom:12px;}
+.einfo{display:flex;flex-direction:column;gap:6px;}
+.ei{display:flex;flex-direction:column;}
+.el{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+.ev{font-size:.86rem;font-weight:600;color:var(--navy);}
+.eafis{width:100%;border-radius:8px;border:1px solid var(--border);}
+.ed{font-size:.85rem;color:var(--text);line-height:1.72;margin:10px 0;}
+.emc{display:flex;flex-direction:column;gap:8px;margin:12px 0;}
+.emcd{display:flex;align-items:center;gap:11px;background:#f3f6fc;border:1px solid var(--border);border-radius:10px;padding:12px 14px;cursor:pointer;transition:all .2s;}
+.emcd:hover{border-color:var(--gold);background:#fffbe6;transform:translateX(3px);}
+.emf{font-size:1.6rem;flex-shrink:0;}
+.emi{flex:1;}
+.emi strong{display:block;font-size:.86rem;color:var(--navy);}
+.emi span{font-size:.76rem;color:var(--muted);}
+.emi small{font-size:.68rem;color:var(--gold);font-weight:600;display:block;margin-top:1px;}
+.ea{font-size:1.1rem;color:var(--gold);flex-shrink:0;}
+.esec{margin:12px 0;}
+.esec h4{font-size:.78rem;font-weight:700;color:var(--navy);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--border);}
+.fbk{display:flex;align-items:center;gap:7px;background:#1877f2;color:#fff;padding:7px 12px;border-radius:7px;text-decoration:none;font-size:.76rem;font-weight:600;margin:4px 0;transition:all .2s;}
+.fbk:hover{background:#0f5bb5;}
+.ddays{display:flex;flex-wrap:wrap;gap:6px;margin:7px 0;}
+.dday{display:inline-block;background:var(--navy);color:#fff;padding:5px 12px;border-radius:6px;text-decoration:none;font-size:.74rem;font-weight:600;transition:all .2s;}
+.dday:hover{background:var(--gold);color:var(--navy2);}
+.pgal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:7px;margin:8px 0;}
+.pgal img,.gimg{width:100%;height:110px;object-fit:cover;border-radius:7px;cursor:zoom-in;border:1px solid var(--border);transition:all .2s;}
+.pgal img:hover,.gimg:hover{transform:scale(1.04);box-shadow:0 4px 14px rgba(26,58,107,.2);}
+.reviste{display:flex;flex-direction:column;gap:6px;}
+.revista{display:flex;align-items:center;justify-content:space-between;background:#f3f6fc;border:1px solid var(--border);border-radius:8px;padding:9px 12px;flex-wrap:wrap;gap:6px;}
+.revista span{font-size:.78rem;color:var(--navy);font-weight:500;}
+.revista div{display:flex;gap:5px;}
+.ebtn{background:var(--navy);color:#fff;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:.7rem;font-weight:600;transition:all .2s;}
+.ebtn:hover{background:var(--gold);color:var(--navy2);}
+.lqgr{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:8px 0;}
+.lq-c{display:flex;flex-direction:column;align-items:center;text-align:center;padding:12px 8px;background:#f0f8ff;border:1px solid #a8d4ff;border-radius:10px;text-decoration:none;transition:all .2s;gap:5px;}
+.lq-c:hover{background:#daeeff;transform:translateY(-2px);border-color:#2980b9;}
+.lq-i{font-size:1.5rem;}
+.lq-l{font-size:.7rem;color:#1a4a70;font-weight:600;line-height:1.3;}
+.lq-b{font-size:.6rem;background:#2980b9;color:#fff;padding:2px 6px;border-radius:10px;font-weight:700;}
+.wwgr{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin:8px 0;}
+.ww-c{display:flex;flex-direction:column;align-items:center;text-align:center;padding:11px 8px;background:#f8f3ff;border:1px solid #d4b8ff;border-radius:10px;text-decoration:none;transition:all .2s;gap:5px;}
+.ww-c:hover{background:#ede0ff;transform:translateY(-2px);border-color:#9b59b6;}
+.ww-i{font-size:1.5rem;}
+.ww-l{font-size:.7rem;color:#4a2070;font-weight:600;line-height:1.3;}
+.ww-b{font-size:.6rem;background:#9b59b6;color:#fff;padding:2px 6px;border-radius:10px;font-weight:700;}
+.ytgr{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:9px;margin:9px 0;}
+.yt-c{display:block;text-decoration:none;border-radius:9px;overflow:hidden;border:1px solid var(--border);transition:all .2s;background:var(--white);}
+.yt-c:hover{transform:translateY(-2px);box-shadow:0 5px 16px rgba(26,58,107,.14);border-color:#ff0000;}
+.yt-t{position:relative;padding-top:56.25%;overflow:hidden;background:#111;}
+.yt-t img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.yt-p{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.7);}
+.yt-l{padding:6px 8px;font-size:.7rem;color:var(--text);font-weight:500;line-height:1.3;}
+#lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;}
+#lb img{max-width:93vw;max-height:91vh;border-radius:8px;}
+@media(max-width:700px){.egr{grid-template-columns:1fr;}.ytgr,.lqgr,.wwgr{grid-template-columns:repeat(2,1fr);}.pgal{grid-template-columns:repeat(2,1fr);}}
+</style>
+</head>
+<body>
+<div class="topbar"><b>🎓 Școala Gimnazială Nr. 6 Râmnicu Sărat</b> &nbsp;·&nbsp; Natura ne aseamănă, educația ne deosebește</div>
+<header>
+<div class="hdr">
+  <div class="logo" onclick="go('acasa')">
+    <div class="logo-badge"><img src="https://scoalagimnazialanr6ramnicusarat.ro/wp-content/uploads/2018/03/cropped-1_Primary_logo_on_transparent_224x69-270x270.png" alt="Logo" onerror="this.parentNode.innerHTML='🏫'"></div>
+    <div class="logo-info"><h1>Școala Gimnazială Nr. 6</h1><p>Râmnicu Sărat · Județul Buzău</p></div>
+  </div>
+  <div class="hdr-logos">
+    <a href="http://isjbz.ro" target="_blank"><img src="https://scoalagimnazialanr6ramnicusarat.ro/wp-content/uploads/2018/03/sigla_isjbz.gif" alt="ISJ Buzău"></a>
+    <a href="http://www.edu.ro" target="_blank"><img src="https://scoalagimnazialanr6ramnicusarat.ro/wp-content/uploads/2018/03/ministerul_educatiei_nationale.jpg" alt="Min. Educației"></a>
+  </div>
+  <button class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+</div>
+</header>
+<nav>
+<ul class="nw" id="nw">
+  <li class="ni"><a href="#" class="act" id="na-acasa" onclick="go('acasa');return false;">Acasă</a></li>
+  <li class="ni"><span>Despre Noi <span class="arr">▼</span></span>
+    <ul class="dd">
+      <li><a href="#" onclick="go('prezentare_scolii');return false;">Prezentarea Școlii</a></li>
+      <li><a href="#" onclick="go('circumscriptia_scolara');return false;">Circumscripția Școlară</a></li>
+      <li><a href="#" onclick="go('moderator_pagina_web');return false;">Moderator Pagină Web</a></li>
+    </ul>
+  </li>
+  <li class="ni"><span>Managementul Școlii <span class="arr">▼</span></span>
+    <ul class="dd">
+      <li><a href="#" onclick="go('stat_in_plata');return false;">Stat în Plată</a></li>
+      <li><a href="#" onclick="go('stat_functii_2025');return false;">Stat de Funcții 31.03.2025</a></li>
+      <li><a href="#" onclick="go('stat_functii_2024');return false;">Stat de Funcții 30.09.2024</a></li>
+      <li><a href="#" onclick="go('organigrama');return false;">Organigramă</a></li>
+      <li><a href="#" onclick="go('roi_2021_2022');return false;">ROI 2021–2022</a></li>
+      <li><a href="#" onclick="go('roi_2020_2021');return false;">ROI 2020–2021</a></li>
+      <li><a href="#" onclick="go('pdi');return false;">PDI 2020–2024</a></li>
+      <li><a href="#" onclick="go('plan_managerial');return false;">Plan Managerial 2020–2021</a></li>
+      <li><a href="#" onclick="go('raei');return false;">RAEI 2019–2020</a></li>
+      <li><a href="#" onclick="go('raport_director');return false;">Raport Anual Director 2019–2020</a></li>
+      <li><a href="#" onclick="go('declaratii_avere');return false;">Declarații Avere și Interese</a></li>
+      <li><a href="#" onclick="go('plan_integritate');return false;">Plan de Integritate</a></li>
+      <li><a href="#" onclick="go('executie_bugetara');return false;">Raport Execuție Bugetară</a></li>
+      <li><a href="#" onclick="go('consiliu_profesoral');return false;">Componența Consiliului Profesoral</a></li>
+      <li><a href="#" onclick="go('lista_functii');return false;">Lista Funcțiilor 31.03.2021</a></li>
+      <li><a href="#" onclick="go('cv_director');return false;">Oprea Horia – CV</a></li>
+    </ul>
+  </li>
+  <li class="ni"><span>Profesori <span class="arr">▼</span></span>
+    <ul class="dd">
+      <li><a href="#" onclick="go('repartizare_educatori');return false;">Repartizare pe Clase – Educatori</a></li>
+      <li><a href="#" onclick="go('repartizare_clase_2021');return false;">Repartizarea pe Clase 2021–2022</a></li>
+      <li><a href="#" onclick="go('ordin_3189');return false;">Ordin nr.3189/2021 – Evaluare Personal</a></li>
+      <li class="has-s"><a href="#" onclick="go('repartizare_cadre');return false;">Repartizarea Cadrelor pe Grupe/Clase</a>
+        <ul class="ss"><li><a href="#" onclick="go('repartizare_clase_2021');return false;">Repartizare 2021–2022</a></li></ul>
+      </li>
+    </ul>
+  </li>
+  <li class="ni"><span>Evaluare Națională <span class="arr">▼</span></span>
+    <ul class="dd">
+      <li><a href="#" onclick="go('en_cls2');return false;">Clasa a II-a</a></li>
+      <li><a href="#" onclick="go('en_cls4_6');return false;">Clasele a IV-a și a VI-a</a></li>
+      <li><a href="#" onclick="go('en_cls8');return false;">Clasa a VIII-a</a></li>
+      <li><a href="#" onclick="go('ordin_scoala_dupa_scoala');return false;">Ordin Program Școala după Școală</a></li>
+      <li><a href="#" onclick="go('ordin_simulare');return false;">Ordin Simulare Evaluare Națională</a></li>
+      <li><a href="#" onclick="go('procedura_simulare');return false;">Procedură Simulare Evaluare Națională</a></li>
+    </ul>
+  </li>
+  <li class="ni"><span>Legislație <span class="arr">▼</span></span>
+    <ul class="dd">
+      <li><a href="#" onclick="go('calendar_2022_2023');return false;">Calendar Înscriere 2022–2023</a></li>
+      <li><a href="#" onclick="go('ordin_metodologie_2022');return false;">Ordin Metodologie Înscriere 2022</a></li>
+      <li><a href="#" onclick="go('ordin_metodologie_2021');return false;">Ordin Metodologie Înscriere 2021</a></li>
+      <li><a href="#" onclick="go('metodologie_inscriere');return false;">Metodologia de Înscriere</a></li>
+      <li><a href="#" onclick="go('cerere_inscriere');return false;">Cerere Înscriere Primar</a></li>
+      <li><a href="#" onclick="go('calendar_2021_2022');return false;">Calendar Înscriere 2021–2022</a></li>
+    </ul>
+  </li>
+  <li class="ni"><a href="#" onclick="go('ziua_lecturii');return false;">15 Feb – Ziua Lecturii</a></li>
+  <li class="ni"><span>Activități în Școală <span class="arr">▼</span></span>
+    <ul class="dd">
+      <li><a href="#" onclick="go('concurs_poveste');return false;">Concurs „Îmi spui o poveste"</a></li>
+      <li><a href="#" onclick="go('formatiuni_2024');return false;">Procedură Constituire Formațiuni 2024–2025</a></li>
+      <li><a href="#" onclick="go('proc_sds');return false;">Procedură Școala după Școală</a></li>
+      <li><a href="#" onclick="go('centre_sds');return false;">Centre Școala după Școală</a></li>
+      <li><a href="#" onclick="go('tabel_nominal_sds');return false;">Tabel Nominal Elevi – Cls. I–IV</a></li>
+      <li><a href="#" onclick="go('grupa1');return false;">Grupa 1 – Clasele I–II</a></li>
+      <li><a href="#" onclick="go('grupa2');return false;">Grupa 2 – Clasele a-III-a</a></li>
+      <li><a href="#" onclick="go('grupa3');return false;">Grupa 3 – Clasele a-III-a</a></li>
+      <li><a href="#" onclick="go('grupa4');return false;">Grupa 4 – Clasele a-IV-a</a></li>
+      <li><a href="#" onclick="go('model_cerere_sds');return false;">Model Cerere Școala după Școală</a></li>
+      <li><a href="#" onclick="go('fisa_prezenta');return false;">Fișă Prezență Elevi Martie 2021</a></li>
+      <li><a href="#" onclick="go('dec1');return false;">1 Decembrie</a></li>
+    </ul>
+  </li>
+  <li class="ni"><a href="#" onclick="go('decizii');return false;">Decizii și Hotărâri</a></li>
+  <li class="ni"><span>Noutăți <span class="arr">▼</span></span>
+    <ul class="dd">
+      <li><a href="#" onclick="go('inscriere_2024_2025');return false;">Înscriere Cls. Pregătitoare 2024–2025</a></li>
+      <li><a href="#" onclick="go('teren_sport');return false;">Program Acces Teren de Sport</a></li>
+      <li><a href="#" onclick="go('cls_preg_ab');return false;">Clasa Pregătitoare A + B</a></li>
+      <li><a href="#" onclick="go('anunt_inscriere_cp');return false;">Anunț Înscriere Clasa Pregătitoare</a></li>
+      <li><a href="#" onclick="go('consiliere_online');return false;">Consiliere Online</a></li>
+      <li><a href="#" onclick="go('program_tablete');return false;">Program Tablete</a></li>
+      <li><a href="#" onclick="go('tabel_optionale');return false;">Tabel Opționale 2021–2022</a></li>
+      <li><a href="#" onclick="go('anunt_concurs');return false;">Anunț Concurs</a></li>
+      <li><a href="#" onclick="go('anunt');return false;">Anunț (Sem. II 2020–2021)</a></li>
+      <li><a href="#" onclick="go('rovaccinare');return false;">#ROVACCINARE</a></li>
+      <li><a href="#" onclick="go('invitatie_cp');return false;">Invitație Clasa Pregătitoare</a></li>
+      <li class="has-s"><a href="#" onclick="go('invitatie_cp');return false;">Anunț Concurs Secretară</a>
+        <ul class="ss"><li><a href="#" onclick="go('anunt_concurs_secretara');return false;">Anunț Concurs Secretară</a></li></ul>
+      </li>
+      <li><a href="#" onclick="go('rezultat_concurs_admin');return false;">Rezultat Concurs Administrator</a></li>
+    </ul>
+  </li>
+  <li class="ni"><span>Admitere Cls. Pregătitoare <span class="arr">▼</span></span>
+    <ul class="dd">
+      <li><a href="#" onclick="go('inscriere_cp_2025');return false;">Înscriere Clasa Pregătitoare 2025</a></li>
+      <li><a href="#" onclick="go('lista_admisi');return false;">Lista Copiilor Admiși – Prima Etapă</a></li>
+      <li><a href="#" onclick="go('locuri_libere');return false;">Locuri Libere după Prima Etapă 2024–2025</a></li>
+    </ul>
+  </li>
+  <li class="ni"><a href="#" onclick="go('contact');return false;">Contact</a></li>
+  <li class="ni"><a href="#" onclick="go('pnras');return false;">PNRAS</a></li>
+  <li class="ni"><span>ERASMUS+ <span class="arr">&#9660;</span></span>
+    <ul class="dd">
+      <li><a href="#" onclick="go('erasmus_proiect');return false;">Proiect ERASMUS+ &ndash; Prezentare</a></li>
+      <li class="has-s"><a href="#" onclick="go('erasmus_mobilitati');return false;">Mobilit&#259;&#539;i Proiect</a>
+        <ul class="ss">
+          <li><a href="#" onclick="go('erasmus_malta');return false;">&#127474;&#127481; Malta</a></li>
+          <li><a href="#" onclick="go('erasmus_finlanda');return false;">&#127467;&#127470; Finlanda</a></li>
+          <li><a href="#" onclick="go('erasmus_cipru');return false;">&#127464;&#127486; Cipru &ndash; Elevi</a></li>
+        </ul>
+      </li>
+      <li class="has-s"><a href="#" onclick="go('erasmus_diseminare');return false;">Diseminare &amp; Valorificare</a>
+        <ul class="ss">
+          <li><a href="#" onclick="go('erasmus_activitati_dis');return false;">Activit&#259;&#539;i diseminare</a></li>
+          <li><a href="#" onclick="go('erasmus_online');return false;">Diseminare online &ndash; FB</a></li>
+          <li><a href="#" onclick="go('erasmus_bune_practici');return false;">Bune practici</a></li>
+        </ul>
+      </li>
+      <li><a href="#" onclick="go('erasmus_resurse');return false;">Resurse &amp; Materiale</a></li>
+      <li><a href="#" onclick="go('erasmus_galerie');return false;">Galerie Foto-Video</a></li>
+    </ul>
+  </li>
+</ul>
+</nav>
+
+<!-- ACASA -->
+<div class="pg on" id="pg-acasa">
+  <div class="hero">
+    <img class="hero-img" src="https://scoalagimnazialanr6ramnicusarat.ro/wp-content/uploads/2020/08/scoala-6.jpg" alt="Scoala Nr. 6">
+    <div class="hero-ov"></div>
+    <div class="hero-body">
+      <div class="hero-tag">An Școlar 2025–2026</div>
+      <h2>Bine ați venit la Școala Gimnazială Nr. 6 Râmnicu Sărat</h2>
+      <p>O comunitate dedicată educației de calitate, formării caracterului și pregătirii elevilor pentru viitor.</p>
+      <div class="btns">
+        <button class="btn-g" onclick="go('prezentare_scolii')">Despre noi →</button>
+        <button class="btn-w" onclick="go('contact')">Contact</button>
+      </div>
+    </div>
+  </div>
+  <div class="stats"><div class="stats-in">
+    <div class="st"><div class="st-n">1961</div><div class="st-l">An înființare</div></div>
+    <div class="st"><div class="st-n">600+</div><div class="st-l">Elevi</div></div>
+    <div class="st"><div class="st-n">50+</div><div class="st-l">Cadre didactice</div></div>
+    <div class="st"><div class="st-n">64</div><div class="st-l">Ani de activitate</div></div>
+  </div></div>
+  <div class="sec" style="background:var(--white);">
+    <div class="sec-in" style="display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;">
+      <div>
+        <div class="sec-hd"><h3>Despre noi...</h3><p>Misiunea și valorile școlii</p><div class="ln"></div></div>
+        <p style="font-size:.89rem;line-height:1.8;margin-bottom:16px;"><strong>Şcoala Gimnazială Nr. 6</strong> funcționează ca un tot unitar, creat din efortul structurii manageriale, al personalului şcolii, al beneficiarilor direcţi, al comunităţii locale, al Inspectoratului Şcolar Județean Buzau și al altor parteneri implicaţi.</p>
+        <button class="btn-g" onclick="go('prezentare_scolii')">Citeste mai departe</button>
+      </div>
+      <img src="https://scoalagimnazialanr6ramnicusarat.ro/wp-content/uploads/2018/03/003-1400x788.jpg" alt="Elevi" style="width:100%;border-radius:14px;box-shadow:0 8px 28px rgba(26,58,107,.14);">
+    </div>
+  </div>
+  <div class="sec"><div class="sec-in">
+    <div class="sec-hd"><h3>Secțiuni principale</h3><p>Navigați rapid</p><div class="ln"></div></div>
+    <div class="cgrid">
+      <div class="card" onclick="go('prezentare_scolii')"><img class="card-img" src="https://scoalagimnazialanr6ramnicusarat.ro/wp-content/uploads/2020/08/scoala-6.jpg" alt=""><div class="cbody"><p>Istoricul și misiunea Școlii Gimnaziale Nr. 6, înființată în 1961.</p><span class="clink">Citește →</span></div></div>
+      <div class="card" onclick="go('inscriere_cp_2025')"><div class="card-ph">📝</div><div class="cbody"><p><strong>Înscrieri 2025</strong> – Informații complete pentru clasa pregătitoare.</p><span class="clink">Detalii →</span></div></div>
+      <div class="card" onclick="go('en_cls8')"><div class="card-ph">🎓</div><div class="cbody"><p><strong>Evaluare Națională</strong> – Documente pentru cls. II, IV, VI, VIII.</p><span class="clink">Detalii →</span></div></div>
+      <div class="card" onclick="go('proc_sds')"><div class="card-ph">📚</div><div class="cbody"><p><strong>Școala după Școală</strong> – Program after-school cls. I–IV.</p><span class="clink">Detalii →</span></div></div>
+      <div class="card" onclick="go('erasmus')"><div class="card-ph">🇪🇺</div><div class="cbody"><p><strong>ERASMUS+</strong> – Proiect „Incluziune în era digitală", grant 38.095 euro.</p><span class="clink">Detalii →</span></div></div>
+      <div class="card" onclick="go('contact')"><div class="card-ph">📞</div><div class="cbody"><p><strong>Contact</strong> – Tel: 0238 575 790, program Luni–Vineri 08:00–16:00.</p><span class="clink">Contact →</span></div></div>
+    </div>
+  </div></div>
+  <div class="sec" style="background:var(--white);padding:26px 24px;">
+    <div class="sec-in" style="text-align:center;">
+      <p style="font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px;">Instituții partenere</p>
+      <div style="display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap;">
+        <a href="http://isjbz.ro" target="_blank" style="text-align:center;text-decoration:none;"><img src="https://scoalagimnazialanr6ramnicusarat.ro/wp-content/uploads/2018/03/sigla_isjbz.gif" style="height:46px;object-fit:contain;"><p style="font-size:.7rem;color:var(--muted);margin-top:7px;">Inspectoratul Județean Buzău</p></a>
+        <a href="http://www.edu.ro" target="_blank" style="text-align:center;text-decoration:none;"><img src="https://scoalagimnazialanr6ramnicusarat.ro/wp-content/uploads/2018/03/ministerul_educatiei_nationale.jpg" style="height:46px;object-fit:contain;"><p style="font-size:.7rem;color:var(--muted);margin-top:7px;">Ministerul Educației Naționale</p></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGINI GENERATE DINAMIC -->
+<div id="dyn"></div>
+
+<!-- CONTACT (pagina statica cu harta) -->
+<div class="pg" id="pg-contact">
+  <div class="ph"><div class="ph-in"><h2>Contact</h2><p>Date de contact ale instituției</p></div></div>
+  <div class="bc"><div class="bc-in">Acasă › <b>Contact</b></div></div>
+  <div class="pc">
+    <div class="cgr2">
+      <div class="ccard"><h4>📍 Date de contact</h4>
+        <div class="crow"><span class="cl">Adresă</span><span class="cv">Scoala Gimnaziala Nr. 6, Ramnicu Sarat, Judetul Buzau</span></div>
+        <div class="crow"><span class="cl">Telefon</span><span class="cv"><a href="tel:0238575790">0238 575 790</a></span></div>
+        <div class="crow"><span class="cl">Program</span><span class="cv">Luni–Vineri, 08:00–16:00</span></div>
+      </div>
+      <div class="ccard"><h4>🔗 Linkuri utile</h4>
+        <div class="crow"><span class="cl">ISJ Buzău</span><span class="cv"><a href="http://isjbz.ro" target="_blank">isjbz.ro</a></span></div>
+        <div class="crow"><span class="cl">Min. Educației</span><span class="cv"><a href="http://www.edu.ro" target="_blank">edu.ro</a></span></div>
+        <div class="crow"><span class="cl">An școlar</span><span class="cv">2025–2026</span></div>
+      </div>
+    </div>
+    <div style="margin-top:20px;border-radius:12px;overflow:hidden;border:1px solid var(--border);height:300px;">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2826.1!2d27.0518!3d45.3853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b5cda1a2b6f48d%3A0x8c0e2b06a4d0b5c0!2sScoala+Gimnaziala+Nr.+6%2C+Ramnicu+Sarat!5e0!3m2!1sro!2sro!4v1620000000000!5m2!1sro!2sro" width="100%" height="300" style="border:0;" allowfullscreen loading="lazy" title="Harta scoala"></iframe>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-in">
+    <div class="ft-gr">
+      <div class="ft-col"><h5>🏫 Școala Gimnazială Nr. 6</h5><p>O comunitate dedicată educației de calitate. Înființată în 1961, formăm caractere și pregătim elevii pentru viitor alături de familie și comunitate.</p><p style="margin-top:10px;font-size:.7rem;">© 2025–2026 Școala Gimnazială Nr. 6 Râmnicu Sărat</p></div>
+      <div class="ft-col"><h5>📋 Navigare</h5><ul>
+        <li><a onclick="go('prezentare_scolii')">Despre Noi</a></li>
+        <li><a onclick="go('inscriere_cp_2025')">Înscrieri 2025</a></li>
+        <li><a onclick="go('en_cls8')">Evaluare Națională</a></li>
+        <li><a onclick="go('proc_sds')">Școala după Școală</a></li>
+        <li><a onclick="go('erasmus')">ERASMUS+</a></li>
+        <li><a onclick="go('pnras')">PNRAS</a></li>
+        <li><a onclick="go('contact')">Contact</a></li>
+      </ul></div>
+      <div class="ft-col"><h5>📞 Contact</h5><ul>
+        <li><a>📍 Str. Republicii Nr. 6, Rm. Sărat</a></li>
+        <li><a href="tel:0238575790">📞 0238 575 790</a></li>
+        <li><a>⏰ Luni–Vineri 08:00–16:00</a></li>
+        <li><a href="http://isjbz.ro" target="_blank">🔗 ISJ Buzău</a></li>
+        <li><a href="http://www.edu.ro" target="_blank">🔗 Min. Educației</a></li>
+      </ul></div>
+    </div>
+    <div class="ft-bot"><span>Școala Gimnazială Nr. 6 Râmnicu Sărat · An Școlar 2025–2026</span><span>Județul Buzău · România</span></div>
+  </div>
+</footer>
+
+<script>
+// ══ URL-uri 100% din baza de date originala ══
+var WP='http://scoalagimnazialanr6ramnicusarat.ro/wp-content/uploads';
+
+var PAGES={
+  prezentare_scolii:{t:'Prezentarea Școlii',bc:'Despre Noi',
+    pdfs:[{l:'Scoala nr. 6 Rm. Sarat - Scurt istoric',u:WP+'/2020/11/Scoala-nr.-6-Rm.-Sarat-Scurt-istoric.pdf'}],
+    extra:'prezentare'},
+  circumscriptia_scolara:{t:'Circumscripția Școlară',bc:'Despre Noi',
+    pdfs:[{l:'Circumscripția Școlară',u:WP+'/2023/04/Circumscriptia-Scolara.pdf'}]},
+  moderator_pagina_web:{t:'Moderator Pagină Web',bc:'Despre Noi',extra:'moderator',pdfs:[]},
+  stat_in_plata:{t:'Stat în Plată',sub:'31.03.2025',bc:'Managementul Școlii',
+    pdfs:[{l:'STAT ÎN PLATĂ – 31.03.2025',u:WP+'/2025/04/STAT-IN-PLATA-31.03.2025.pdf'}]},
+  stat_functii_2025:{t:'Stat de Funcții 31.03.2025',bc:'Managementul Școlii',
+    pdfs:[{l:'Stat de Funcții la 31.03.2025',u:WP+'/2025/04/Stat-de-functii-la-31.03.2025.pdf'}]},
+  stat_functii_2024:{t:'Stat de Funcții 30.09.2024',bc:'Managementul Școlii',
+    pdfs:[{l:'Stat de Funcții 30.09.2024',u:WP+'/2024/10/CamScanner-2024-10-14-08.49.pdf'}]},
+  organigrama:{t:'Organigramă',bc:'Managementul Școlii',pdfs:[]},
+  roi_2021_2022:{t:'Regulament de Ordine Interioară 2021–2022',bc:'Managementul Școlii',
+    pdfs:[{l:'ROI 2021–2022',u:WP+'/2021/11/ROI-2021-2022-bun.pdf'}]},
+  roi_2020_2021:{t:'Regulament de Ordine Interioară 2020–2021',bc:'Managementul Școlii',
+    pdfs:[{l:'ROI 2020–2021',u:WP+'/2020/11/ROI-2020-2021-bun.pdf'}]},
+  pdi:{t:'PDI 2020–2024',sub:'Proiect de Dezvoltare Instituțională',bc:'Managementul Școlii',
+    pdfs:[{l:'PROIECT DE DEZVOLTARE INSTITUTIONALA 2020–2024',u:WP+'/2020/11/PDI-2020-2024.pdf'}]},
+  plan_managerial:{t:'Plan Managerial 2020–2021',bc:'Managementul Școlii',pdfs:[]},
+  raei:{t:'RAEI 2019–2020',bc:'Managementul Școlii',
+    pdfs:[{l:'RAEI 2019–2020',u:WP+'/2020/11/RAEI-2019-2020.pdf'}]},
+  raport_director:{t:'Raport Anual Director 2019–2020',bc:'Managementul Școlii',
+    pdfs:[{l:'Raport Anual Director 2019–2020',u:WP+'/2020/11/Raport-anual-director-2019-2020-final.pdf'}]},
+  declaratii_avere:{t:'Declarații de Avere și Interese',bc:'Managementul Școlii',
+    extra:'declaratii',
+    pdfs:[
+      {l:'Declarație de avere (1)',u:WP+'/2022/07/1405133.pdf'},
+      {l:'Declarație de avere (2)',u:WP+'/2022/07/download-2.pdf'},
+      {l:'Declarație de interese (1)',u:WP+'/2022/07/1405183.pdf'},
+      {l:'Declarație de interese (2)',u:WP+'/2022/07/download-3.pdf'}
+    ]},
+  plan_integritate:{t:'Plan de Integritate',bc:'Managementul Școlii',
+    pdfs:[{l:'Plan de Integritate',u:WP+'/2021/03/Plan-de-integritate.pdf'}]},
+  executie_bugetara:{t:'Raport de Execuție Bugetară',bc:'Managementul Școlii',
+    pdfs:[{l:'Raport de Execuție Bugetară',u:WP+'/2021/03/Raport-de-executie-bugetara.pdf'}]},
+  consiliu_profesoral:{t:'Componența Consiliului Profesoral',bc:'Managementul Școlii',
+    pdfs:[{l:'Componența Consiliului Profesoral',u:WP+'/2020/11/Componenta-Consiliului-Profesoral-converted.pdf'}]},
+  lista_functii:{t:'Lista Funcțiilor 31.03.2021',bc:'Managementul Școlii',
+    pdfs:[{l:'Lista Funcțiilor 31.03.2021',u:WP+'/2021/03/Lista-functiilor-31.03.2021-1.pdf'}]},
+  cv_director:{t:'Oprea Horia – CV',bc:'Managementul Școlii',extra:'director',
+    pdfs:[{l:'Oprea Horia – Curriculum Vitae',u:WP+'/2020/11/Oprea-Horia-Curriculum-Vitae-1-converted-1.pdf'}]},
+  repartizare_educatori:{t:'Repartizare pe Clase – Educatori',bc:'Profesori',
+    pdfs:[{l:'Repartizarea pe Clase – Educatori',u:WP+'/2021/09/REPARTIZAREA-PE-CLASE-EDUCATORI.pdf'}]},
+  repartizare_clase_2021:{t:'Repartizarea pe Clase – An Școlar 2021–2022',bc:'Profesori',
+    pdfs:[{l:'Repartizarea pe Clase 2021–2022',u:WP+'/2021/09/REPARTIZAREA-PE-CLASE-EDUCATORI.pdf'}]},
+  repartizare_cadre:{t:'Repartizarea Cadrelor pe Grupe/Clase',bc:'Profesori',pdfs:[]},
+  ordin_3189:{t:'Ordin nr.3189/2021 privind Evaluarea Personalului Didactic',bc:'Profesori',
+    pdfs:[{l:'Ordinul 3189/2021 – Evaluare personal didactic',u:WP+'/2021/03/Ordinul-3189.2021-Evaluare-personal-didactic-si-anexa.pdf'}]},
+  en_cls2:{t:'Evaluare Națională – Clasa a II-a',bc:'Evaluare Națională',pdfs:[]},
+  en_cls4_6:{t:'Evaluare Națională – Clasa a IV-a și a VI-a',bc:'Evaluare Națională',pdfs:[]},
+  en_cls8:{t:'Evaluare Națională – Clasa a VIII-a',bc:'Evaluare Națională',pdfs:[]},
+  ordin_scoala_dupa_scoala:{t:'Ordin Program „Școala după Școală"',bc:'Evaluare Națională',
+    pdfs:[{l:'OME 3460/2021 – modificare OME 3300/2021',u:WP+'/2021/03/OME_3460_2021_modificare_OME_3300_2021.pdf'}]},
+  ordin_simulare:{t:'Ordin privind Organizarea Simulării Evaluării Naționale',bc:'Evaluare Națională',
+    pdfs:[{l:'OME 3449/2021 – Simulare EN și BAC',u:WP+'/2021/03/OME_3449_2021_simulare_EN-BAC-1.pdf'}]},
+  procedura_simulare:{t:'Procedură privind Organizarea Simulării EN',bc:'Evaluare Națională',
+    pdfs:[{l:'Procedură – Simulare Evaluare Națională Cls. VIII',u:WP+'/2021/03/Procedura-privind-organizarea-si-desfasurarea-simularii-Evaluarii-Nationale-pentru-absolventii-clasei-a-VIII-a.pdf'}]},
+  calendar_2022_2023:{t:'Calendar Înscriere Primar 2022–2023',bc:'Legislație',
+    pdfs:[{l:'Calendar Înscriere Cls. Pregătitoare 2022–2023',u:WP+'/2022/04/CALENDAR-INSCRIERE-CLASA-PREGATITOARE_2022-2023.pdf'}]},
+  ordin_metodologie_2022:{t:'Ordin privind Aprobarea Metodologiei de Înscriere a Copiilor',bc:'Legislație',
+    pdfs:[{l:'Ordin nr. 3.445 din 17 martie 2022',u:WP+'/2022/04/ORDIN-nr.-3.445-din-17-martie-2022.pdf'}]},
+  ordin_metodologie_2021:{t:'Ordin privind Aprobarea Metodologiei de Înscriere în Înv. Primar',bc:'Legislație',
+    pdfs:[{l:'OME 3473 din 10.03.2021',u:WP+'/2021/03/OME-3473-din-10.03.2021-privind-aprobarea-Metodologiei-de-inbscriere-a-c.._.pdf'}]},
+  metodologie_inscriere:{t:'Metodologia de Înscriere în Învățământul Primar',bc:'Legislație',
+    pdfs:[{l:'Metodologie de Înscriere a Copiilor în Înv. Primar',u:WP+'/2021/03/Metodologie-de-inscriere-a-copiilor-in-invatamantul-primar.pdf'}]},
+  cerere_inscriere:{t:'Cerere Înscriere Învățământ Primar',bc:'Legislație',
+    note:'Completați formularul și depuneți-l la secretariatul școlii în perioada stabilită prin calendar.',
+    pdfs:[{l:'Anexe 1-2-3 la Metodologia de Înscriere',u:WP+'/2021/03/Anexa-nr.-1-2-3-la-Metodologia-de-inscriere-a-copiilor-in-invatamantul.._.pdf'}]},
+  calendar_2021_2022:{t:'Calendar Înscriere Primar 2021–2022',bc:'Legislație',
+    pdfs:[{l:'Calendar Înscriere CP 2021',u:WP+'/2021/03/Calendar_inscriere-CP-2021.pdf'}]},
+  ziua_lecturii:{t:'15 Februarie – Ziua Lecturii',bc:'Acasă',pdfs:[]},
+  concurs_poveste:{t:'Concurs „Îmi spui o poveste"',bc:'Activități în Școală',
+    extra:'concurs_img',pdfs:[]},
+  formatiuni_2024:{t:'Procedură Constituire Formațiuni Elevi Cls. Pregătitoare 2024–2025',bc:'Activități în Școală',
+    pdfs:[{l:'Procedură Constituire Formațiuni 2024–2025',u:WP+'/2024/05/SKMBT_C25324051311260.pdf'}]},
+  proc_sds:{t:'Procedură Operațională – Școala după Școală',bc:'Activități în Școală',
+    pdfs:[{l:'Procedură – Desfășurarea Programului Pilot Școala după Școală',u:WP+'/2021/03/Procedura-operationala-privind-desfasurarea-programului-pilot-Scoala-dupa-Scoala.pdf'}]},
+  centre_sds:{t:'Centre pentru Derularea Programului Școala după Școală',bc:'Activități în Școală',
+    pdfs:[{l:'Centre pentru Derularea Programului SDS',u:WP+'/2021/03/Centre-pentru-derularea-programului-Scoala-dupa-scoala.pdf'}]},
+  tabel_nominal_sds:{t:'Tabel Nominal cu Elevii – Clasele I–IV',bc:'Activități în Școală',
+    pdfs:[{l:'Tabel Nominal Elevi Cls. I–IV – Școala după Școală',u:WP+'/2021/03/Scoala-6-Rm.-Sarat-Scoala-dupa-scoala-Tabel-nominal-cu-elevii-clasele-I-IV-1-1.pdf'}]},
+  grupa1:{t:'Grupa 1 – Clasele I–II',bc:'Activități în Școală',
+    pdfs:[{l:'Grupa 1 – Clasele I–II',u:WP+'/2021/03/GRUPA-1-CLASELE-I-II-SC6RMS.pdf'}]},
+  grupa2:{t:'Grupa 2 – Clasele a-III-a',bc:'Activități în Școală',
+    pdfs:[{l:'Grupa 2 – Clasele a-III-a',u:WP+'/2021/03/GRUPA-2-CLASELE-A-III-A-SC6RMS.pdf'}]},
+  grupa3:{t:'Grupa 3 – Clasele a-III-a',bc:'Activități în Școală',
+    pdfs:[{l:'Grupa 3 – Clasele a-III-a',u:WP+'/2021/03/GRUPA-3-CLASELE-A-III-SC6RMS.pdf'}]},
+  grupa4:{t:'Grupa 4 – Clasele a-IV-a',bc:'Activități în Școală',
+    pdfs:[{l:'Grupa 4 – Clasele a-IV-a',u:WP+'/2021/03/GRUPA-4-CLASELE-A-IV-A-SC6RMS.pdf'}]},
+  model_cerere_sds:{t:'Model Cerere „Școala după Școală"',bc:'Activități în Școală',
+    pdfs:[{l:'Model Cerere Școala după Școală',u:WP+'/2021/03/Model-cerere-Scoala-dupa-scoala.pdf'}]},
+  fisa_prezenta:{t:'Fișă Prezență Elevi Martie 2021',bc:'Activități în Școală',
+    pdfs:[{l:'Fișă Prezență Elevi Martie 2021',u:WP+'/2021/03/Fisa-prezenta-elevi-martie-2021-1.pdf'}]},
+  dec1:{t:'1 Decembrie – Ziua Națională a României',bc:'Activități în Școală',
+    pdfs:[{l:'1 Decembrie – Ziua Națională a României',u:WP+'/2020/12/1-Decembrie-Ziua-Nationala-a-Romaniei.pdf'}]},
+  decizii:{t:'Decizii și Hotărâri',bc:'Acasă',
+    pdfs:[{l:'Hotărâre CA 11.11.2021',u:WP+'/2021/11/Hotarare-CA-11.11.2021.pdf'}]},
+  inscriere_2024_2025:{t:'Înscriere Cls. Pregătitoare 2024–2025',bc:'Noutăți',
+    pdfs:[{l:'Clasa Pregătitoare 2024–2025',u:WP+'/2024/03/Clasa-Pregatitoare2024-2025-1.pdf'}]},
+  teren_sport:{t:'Program de Acces pe Terenul de Sport',bc:'Noutăți',
+    pdfs:[{l:'Program Acces Teren de Sport',u:WP+'/2023/05/SKMBT_C25323051810550.pdf'}]},
+  cls_preg_ab:{t:'Clasa Pregătitoare A + B',bc:'Noutăți',
+    pdfs:[{l:'Clasa Pregătitoare A + B 2022–2023',u:WP+'/2022/08/CP-2022-2023.pdf'}]},
+  anunt_inscriere_cp:{t:'Anunț Înscriere Clasa Pregătitoare',bc:'Noutăți',extra:'anunt_cp_imgs',
+    pdfs:[{l:'Anunț Clasa Pregătitoare',u:WP+'/2022/05/Anunt-CP.pdf'}]},
+  consiliere_online:{t:'Consiliere Online',bc:'Noutăți',extra:'consiliere',pdfs:[]},
+  program_tablete:{t:'Program Tablete',bc:'Noutăți',extra:'tablete',pdfs:[]},
+  tabel_optionale:{t:'Tabel Opționale 2021–2022',bc:'Noutăți',
+    pdfs:[{l:'Tabel cu Opționalele Propuse 2021–2022',u:WP+'/2020/12/Tabel-cu-optionalele-propuse-pentru-anul-scolar-2021-2022-1-converted.pdf'}]},
+  anunt_concurs:{t:'Anunț Concurs',bc:'Noutăți',
+    pdfs:[{l:'Anunț Concurs Contabil',u:WP+'/2021/02/Anunt-concurs-contabil-converted.pdf'}]},
+  anunt:{t:'Anunț – Reluare Cursuri Semestrul II 2020–2021',bc:'Noutăți',extra:'anunt_sem2',pdfs:[]},
+  rovaccinare:{t:'#ROVACCINARE',bc:'Noutăți',extra:'rovaccinare',pdfs:[]},
+  invitatie_cp:{t:'Invitație Clasa Pregătitoare',bc:'Noutăți',extra:'invitatie_imgs',pdfs:[]},
+  anunt_concurs_secretara:{t:'Anunț Concurs Secretară',bc:'Noutăți',
+    pdfs:[{l:'Anunț Concurs Secretară 2021',u:WP+'/2021/12/Anunt-concurs-secretara2021.pdf'}]},
+  rezultat_concurs_admin:{t:'Rezultatul Concursului – Administrator Financiar',bc:'Noutăți',
+    pdfs:[{l:'Rezultatul Concursului – Administrator Financiar',u:WP+'/2021/03/Rezultatul-concursului-pentru-ocuparea-postului-de-administrator-financiar.pdf'}]},
+  inscriere_cp_2025:{t:'Înscriere Clasa Pregătitoare 2025',bc:'Admitere Cls. Pregătitoare',
+    extra:'inscriere_2025',
+    pdfs:[{l:'ANUNȚ Clasa Pregătitoare 2025–2026',u:WP+'/2025/03/ANUNT-CP-25-26.pdf'}]},
+  lista_admisi:{t:'Lista Copiilor Admiși – Prima Etapă',bc:'Admitere Cls. Pregătitoare',
+    pdfs:[{l:'Lista Copiilor Admiși – Prima Etapă Cls. Pregătitoare',u:WP+'/2024/05/LISTA-COPIILOR-ADMISI-PRIMA-ETAPA-CLS-PREGATITOARE.pdf'}]},
+  locuri_libere:{t:'Locuri Libere după Prima Etapă – 2024–2025',bc:'Admitere Cls. Pregătitoare',
+    pdfs:[{l:'Situația Locurilor Libere după Prima Etapă 2024–2025',u:WP+'/2024/05/SITUATIA-LOCURILOR-RAMASE-LIBERE-DUPA-PRIMA-ETAPA-LA-CLS-PREG-2024-2025.pdf'}]},
+  pnras:{t:'PNRAS',sub:'Plan Național de Redresare și Reziliență',bc:'Acasă',
+    desc:'Școala Gimnazială Nr. 6 beneficiază de finanțare prin PNRR pentru modernizarea infrastructurii educaționale și digitalizarea procesului de învățământ.',pdfs:[]},
+  erasmus:{t:'ERASMUS+ - Incluziune in Era Digitala',sub:'Proiect 2024-1-RO01-KA122-SCH-000232574',bc:'Acasa',extra:'erasmus',pdfs:[]},
+  erasmus_proiect:{t:'Proiect ERASMUS+ - Prezentare',bc:'ERASMUS+',extra:'erasmus_proiect',pdfs:[
+    {l:'Prezentare Proiect ERASMUS+ Incluziune in Era Digitala',u:'erasmus_files/prezentare_proiect_erasmus.pdf'},
+    {l:'Apel Selectie Beneficiari',u:'http://scoalagimnazialanr6ramnicusarat.ro/wp-content/uploads/2024/12/Apel-selectie-beneficiari-Erasmus.pdf'},
+    {l:'Apel Selectie Scoala Nr. 6',u:'http://scoalagimnazialanr6ramnicusarat.ro/wp-content/uploads/2024/10/apel-selectie-scoala-nr-6.pdf'}
+  ]},
+  erasmus_mobilitati:{t:'Mobilitati Proiect',bc:'ERASMUS+',extra:'erasmus_mobilitati',pdfs:[]},
+  erasmus_malta:{t:'Mobilitate Cadre - Malta',sub:'26 oct - 03 nov 2024',bc:'ERASMUS+',extra:'erasmus_malta',pdfs:[
+    {l:'PPT Diseminare Malta',u:'erasmus_files/ppt_malta.pdf'}
+  ]},
+  erasmus_finlanda:{t:'Mobilitate Cadre - Finlanda',sub:'16-24 mart 2025',bc:'ERASMUS+',extra:'erasmus_finlanda',pdfs:[
+    {l:'PPT Finlanda Non-formal',u:'erasmus_files/ppt_finlanda.pdf'}
+  ]},
+  erasmus_cipru:{t:'Mobilitate Elevi - Cipru',sub:'2025',bc:'ERASMUS+',extra:'erasmus_cipru',pdfs:[]},
+  erasmus_diseminare:{t:'Diseminare si Valorificare',bc:'ERASMUS+',extra:'erasmus_diseminare',pdfs:[]},
+  erasmus_activitati_dis:{t:'Activitati de Diseminare',bc:'ERASMUS+',extra:'erasmus_activitati_dis',pdfs:[]},
+  erasmus_online:{t:'Diseminare Online - Facebook',bc:'ERASMUS+',extra:'erasmus_online',pdfs:[]},
+  erasmus_bune_practici:{t:'Bune Practici Educationale',bc:'ERASMUS+',extra:'erasmus_bune_practici',pdfs:[]},
+  erasmus_resurse:{t:'Resurse si Materiale',bc:'ERASMUS+',extra:'erasmus_resurse',pdfs:[]},
+  erasmus_galerie:{t:'Galerie Foto-Video',bc:'ERASMUS+',extra:'erasmus_galerie',pdfs:[]}
+};
+
+// Extracts speciale
+var EXTRAS={
+  prezentare:'<div style="display:grid;grid-template-columns:1fr 280px;gap:24px;align-items:start;margin:14px 0;"><div class="tl"><div class="tl-i"><div class="tl-y">1961 – ÎNFIINȚARE</div><p>Funcționează cu cls. I–VII sub conducerea înv. Drăghia Anton.</p></div><div class="tl-i"><div class="tl-y">1964 – EXTINDERE</div><p>Trecere la 8 clase. Director: prof. Oprea Isofache.</p></div><div class="tl-i"><div class="tl-y">1978 – NOI SPAȚII</div><p>Aripa de nord: 3 săli, biblioteca și sala de sport.</p></div><div class="tl-i"><div class="tl-y">1985 – MODERNIZARE</div><p>Laboratoare și cabinete cu sprijinul Fabricii de Țigarete Rm. Sărat.</p></div><div class="tl-i"><div class="tl-y">2012–2013</div><p>Devine Școala Gimnazială Nr. 6. Arondată: GPN Nr. 1.</p></div><div class="tl-i"><div class="tl-y">2016</div><p>GPN Nr. 9 arondată școlii.</p></div><div class="tl-i"><div class="tl-y">PREZENT</div><p>Nord-vest Rm. Sărat, lângă DN E85. Acces facil, inclusiv navetiști.</p></div></div><div><img src="https://scoalagimnazialanr6ramnicusarat.ro/wp-content/uploads/2020/08/scoala-6.jpg" style="width:100%;border-radius:10px;margin-bottom:10px;"><img src="https://scoalagimnazialanr6ramnicusarat.ro/wp-content/uploads/2018/03/003-1400x788.jpg" style="width:100%;border-radius:10px;"></div></div>',
+  moderator:'<div class="igrid"><div class="icard"><div class="il">Nume</div><div class="iv">Ion Floreta Sorina</div></div><div class="icard"><div class="il">Funcție</div><div class="iv">Moderator Pagină Web</div></div><div class="icard"><div class="il">Instituție</div><div class="iv">Școala Gimnazială Nr. 6</div></div><div class="icard"><div class="il">An școlar</div><div class="iv">2025–2026</div></div></div>',
+  director:'<div class="igrid"><div class="icard"><div class="il">Nume</div><div class="iv">Oprea Horia</div></div><div class="icard"><div class="il">Funcție</div><div class="iv">Director</div></div></div>',
+  declaratii:'<p><strong>Declarație de avere</strong></p>',
+  anunt_cp_imgs:'<div class="img-row"><img src="'+WP+'/2022/05/cls-preg-1.jpg" alt="Clasa pregatitoare"><img src="'+WP+'/2022/05/cls-preg-2-1-scaled.jpg" alt="Clasa pregatitoare 2"></div>',
+  consiliere:'<p><strong>CONSILIERE ONLINE</strong></p><p><strong>C.J.R.A.E. BUZĂU &amp; I.S.J. BUZĂU</strong></p><p>Dragi părinți, elevi și cadre didactice, trecem prin momente total noi față de ceea ce știam până acum, care ne pot crea dificultăți. Consilierii școlari de la CJRAE Buzău vă stau la dispoziție de luni până vineri, în intervalul orar 9.00–16.00.</p><p>📞 <strong>Telefon:</strong> 0238 711 460 &nbsp;&nbsp;📧 <strong>Email:</strong> consiliere@cjraebuzau.ro</p><div class="note">Acest număr de telefon este doar pentru consiliere psihopedagogică.</div>',
+  tablete:'<p><strong>Bună ziua!</strong></p><p>Astăzi am primit <strong>100 de tablete din Programul Național „Școala de acasă"</strong>. Prioritate au elevii care au făcut cerere și care nu dețin niciun dispozitiv de conectare (telefon, tabletă, laptop, calculator) și elevii care împart un astfel de dispozitiv cu un frate/părinte. Se încheie la primirea lor un contract de comodat cu școala, iar returnarea se face în aceeași bună stare în care au fost date.</p><div class="note">Cei care au făcut cereri pentru tablete sunt așteptați la școală pe parcursul zilei de 23.12.2020, începând cu ora 10.</div>',
+  anunt_sem2:'<p>Dragi elevi, stimați părinți,</p><p>Luni, 08.02.2021, va începe semestrul al II-lea al anului școlar 2020–2021. La Școala Gimnazială Nr. 6 cursurile se vor relua conform scenariului verde existent la nivelul municipiului Rm. Sărat, care prevede participarea zilnică a tuturor preșcolarilor și elevilor în unitățile de învățământ, cu respectarea și aplicarea tuturor normelor de protecție.</p><p>Orarul și programul sunt cele dinaintea suspendării cursurilor.</p><div class="note">Vă asigurăm de preocuparea noastră constantă pentru sănătatea tuturor celor implicați în procesul de educație. Sănătate tuturor și mult succes în semestrul al II-lea!</div>',
+  rovaccinare:'<p>Accesați platforma oficială de vaccinare COVID-19:</p><a class="doc-link" href="https://vaccinare-covid.gov.ro/" target="_blank">🔗 vaccinare-covid.gov.ro</a>',
+  invitatie_imgs:'<div class="img-row"><img src="'+WP+'/2021/03/anunt-invitatie-clasa-pregatitoare-page-001-1035x800.jpg" alt="Invitatie cp 1"><img src="'+WP+'/2021/03/anunt-invitatie-clasa-pregatitoare-page-002-1035x800.jpg" alt="Invitatie cp 2"></div>',
+  concurs_img:'<div class="img-row"><img src="'+WP+'/2025/02/calendarul-concursului-1737189412-2-288x400.jpeg" alt="Calendarul concursului"></div><p><a class="doc-link" href="https://www.twinkl.ro/blog/concurs.de.creatie-literara-imi-zici-o-poveste" target="_blank">🔗 Detalii concurs pe twinkl.ro</a></p>',
+  inscriere_2025:'<div class="img-row"><img src="'+WP+'/2025/03/WhatsApp-Image-2025-03-06-at-14.46.31-318x400.jpeg" alt="Inscriere 2025"></div><p><a class="doc-link" href="'+WP+'/2025/03/CERERE-TIP_CLSPRG_ETAPA_I_2025.docx">📄 CERERE-TIP Etapa I – 2025 (DOCX)</a></p><p><a class="doc-link" href="'+WP+'/2025/03/CERERE-TIP_CLSPREG_Etapa-a-II-a_2025.docx">📄 CERERE-TIP Etapa a II-a – 2025 (DOCX)</a></p>',
+  erasmus:'<p>Proiect <strong>2024-1-RO01-KA122-SCH-000232574</strong><br>KA122-SCH – Short-term projects for mobility of learners and staff in school education<br><strong>Valoare grant: 38.095 euro</strong><br>Perioadă: 01 octombrie 2024 – 28 martie 2026 (18 luni)</p><p style="margin-top:10px;">Proiectul ERASMUS+ <strong>„Incluziune în era digitală"</strong> urmărește dezvoltarea competențelor digitale ale profesorilor, promovarea incluziunii educaționale și asigurarea șanselor egale la educație pentru toți elevii.</p><div class="note">Mobilități: <strong>Malta</strong> (oct–nov 2024) · <strong>Finlanda</strong> (mar 2025) · <strong>Cipru</strong> (2025 – cu elevii)</div><div class="img-row"><img src="'+WP+'/2024/10/afis-Incluziune-in-era-digitala-1-189x400.jpg" alt="Afis ERASMUS" style="max-height:260px;"></div><p><a class="doc-link" href="'+WP+'/2024/10/3.-Incluziune-in-era-digitala-ppt-prezentare-proiect-CP-30.09.2024-1.ppt" target="_blank">📊 PPT Prezentare Proiect</a></p>'
+,
+  erasmus: '<div class="ec"><p class="ed">Navigati prin submeniuri pentru toate sectiunile proiectului.</p><div class="emc"><div class="emcd" onclick="go(\'erasmus_proiect\')"><div class="emf">&#127466;&#127482;</div><div class="emi"><strong>Proiect ERASMUS+</strong><span>Prezentare, cod, grant</span></div><span class="ea">&#8594;</span></div><div class="emcd" onclick="go(\'erasmus_mobilitati\')"><div class="emf">&#9992;&#65039;</div><div class="emi"><strong>Mobilitati</strong><span>Malta &middot; Finlanda &middot; Cipru</span></div><span class="ea">&#8594;</span></div><div class="emcd" onclick="go(\'erasmus_diseminare\')"><div class="emf">&#128226;</div><div class="emi"><strong>Diseminare</strong><span>Reviste, consilii, simpozion</span></div><span class="ea">&#8594;</span></div><div class="emcd" onclick="go(\'erasmus_galerie\')"><div class="emf">&#128247;</div><div class="emi"><strong>Galerie Foto</strong><span>Poze din toate mobilitatile</span></div><span class="ea">&#8594;</span></div></div></div>',
+  erasmus_proiect: '<div class="ec"><div class="eh"><span class="ebg">&#127466;&#127482; ERASMUS+ KA122-SCH</span><h3>Incluziune in Era Digitala</h3></div><div class="egr"><div class="einfo"><div class="ei"><span class="el">Cod proiect</span><span class="ev">2024-1-RO01-KA122-SCH-000232574</span></div><div class="ei"><span class="el">Grant</span><span class="ev">38.095 euro</span></div><div class="ei"><span class="el">Perioada</span><span class="ev">01 oct. 2024 - 28 mart. 2026</span></div><div class="ei"><span class="el">Partener</span><span class="ev">CCD Buzau</span></div></div><img class="eafis" src="http://scoalagimnazialanr6ramnicusarat.ro/wp-content/uploads/2024/10/afis-Incluziune-in-era-digitala-1-189x400.jpg" alt="Afis Erasmus"></div><p class="ed">Proiectul urmareste <strong>dezvoltarea competentelor digitale</strong> ale profesorilor, promovarea incluziunii educationale si asigurarea sanselor egale la educatie pentru toti elevii.</p><a class="doc-link" href="http://scoalagimnazialanr6ramnicusarat.ro/wp-content/uploads/2024/12/Apel-selectie-beneficiari-Erasmus.pdf" target="_blank">&#128196; Apel Selectie Beneficiari ERASMUS+</a><a class="doc-link" href="http://scoalagimnazialanr6ramnicusarat.ro/wp-content/uploads/2024/10/apel-selectie-scoala-nr-6.pdf" target="_blank">&#128196; Apel Selectie - Scoala Nr. 6</a></div>',
+  erasmus_mobilitati: '<div class="ec"><h3>&#9992;&#65039; Mobilitati Proiect</h3><div class="emc"><div class="emcd" onclick="go(\'erasmus_malta\')"><div class="emf">&#127474;&#127481;</div><div class="emi"><strong>Malta - Cadre didactice</strong><span>Inclusive classroom through ICT</span><small>26 oct - 03 nov 2024</small></div><span class="ea">&#8594;</span></div><div class="emcd" onclick="go(\'erasmus_finlanda\')"><div class="emf">&#127467;&#127470;</div><div class="emi"><strong>Finlanda - Cadre didactice</strong><span>Non-formal for inclusion</span><small>16-24 mart 2025</small></div><span class="ea">&#8594;</span></div><div class="emcd" onclick="go(\'erasmus_cipru\')"><div class="emf">&#127464;&#127486;</div><div class="emi"><strong>Cipru - Elevi</strong><span>Mobilitate internationala</span><small>2025</small></div><span class="ea">&#8594;</span></div></div></div>',
+  erasmus_malta: '<div class="ec"><div class="eh"><span class="ebg">&#127474;&#127481; Malta oct-nov 2024</span><h3>Inclusive classroom through ICT</h3></div><p class="ed">Curs de formare in Malta axat pe integrarea TIC in educatia incluziva.</p><div class="esec"><h4>&#128203; Documente</h4><a class="doc-link" href="erasmus_files/ppt_malta.pdf" target="_blank">&#128202; PPT Diseminare - Curs Malta (descarca)</a><a class="fbk" href="https://www.facebook.com/photo/?fbid=1084725086991676" target="_blank">&#128216; Apel selectie mobilitate Malta</a></div><div class="esec"><h4>&#128247; Jurnal zilnic</h4><div class="ddays"><a class="dday" href="https://www.facebook.com/photo/?fbid=1107121554752029" target="_blank">Z.1</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1107346251396226" target="_blank">Z.2</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1107136774750507" target="_blank">Z.3</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1107850744679110" target="_blank">Z.4</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1108686214595563" target="_blank">Z.5</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1109421021188749" target="_blank">Z.6</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1110252981105553" target="_blank">Z.7</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1111038614360323" target="_blank">Z.8</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1111699250960926" target="_blank">Z.9</a></div><a class="fbk" href="https://www.facebook.com/media/set/?set=a.1107114011419450&type=3" target="_blank">&#128216; Album foto complet Malta</a></div></div>',
+  erasmus_finlanda: '<div class="ec"><div class="eh"><span class="ebg">&#127467;&#127470; Finlanda mart 2025</span><h3>Non-formal for inclusion</h3></div><p class="ed">Formare profesionala in Finlanda axata pe metode nonformale pentru incluziune.</p><div class="esec"><h4>&#128203; Documente</h4><a class="doc-link" href="erasmus_files/ppt_finlanda.pdf" target="_blank">&#128202; PPT Prezentare Finlanda (descarca)</a></div><div class="esec"><h4>&#128247; Jurnal zilnic</h4><div class="ddays"><a class="dday" href="https://www.facebook.com/photo/?fbid=1214860500644800" target="_blank">Z.1</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1214990550631795" target="_blank">Z.2</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1215598637237653" target="_blank">Z.3</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1216689857128531" target="_blank">Z.4</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1218358773628306" target="_blank">Z.5</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1218365796960937" target="_blank">Z.6</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1219352836862233" target="_blank">Z.7</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1220369153427268" target="_blank">Z.8</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1221162606681256" target="_blank">Z.9</a></div></div><div class="esec"><h4>&#128248; Galerie foto Finlanda</h4><div class="pgal"><img src="erasmus_files/finlanda_1.jpg" onclick="openLB(this)" alt="Finlanda 1" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_2.jpg" onclick="openLB(this)" alt="Finlanda 2" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_3.jpg" onclick="openLB(this)" alt="Finlanda 3" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_4.jpg" onclick="openLB(this)" alt="Finlanda 4" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_5.jpg" onclick="openLB(this)" alt="Finlanda 5" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_6.jpg" onclick="openLB(this)" alt="Finlanda 6" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_7.jpg" onclick="openLB(this)" alt="Finlanda 7" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_8.jpg" onclick="openLB(this)" alt="Finlanda 8" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_9.jpg" onclick="openLB(this)" alt="Finlanda 9" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_10.jpg" onclick="openLB(this)" alt="Finlanda 10" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_11.jpg" onclick="openLB(this)" alt="Finlanda 11" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_12.jpg" onclick="openLB(this)" alt="Finlanda 12" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_13.jpg" onclick="openLB(this)" alt="Finlanda 13" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_14.jpg" onclick="openLB(this)" alt="Finlanda 14" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_15.jpg" onclick="openLB(this)" alt="Finlanda 15" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_16.jpg" onclick="openLB(this)" alt="Finlanda 16" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_17.jpg" onclick="openLB(this)" alt="Finlanda 17" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_18.jpg" onclick="openLB(this)" alt="Finlanda 18" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_19.jpg" onclick="openLB(this)" alt="Finlanda 19" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_20.jpg" onclick="openLB(this)" alt="Finlanda 20" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_21.jpg" onclick="openLB(this)" alt="Finlanda 21" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_22.jpg" onclick="openLB(this)" alt="Finlanda 22" class="gimg" loading="lazy"></div></div></div>',
+  erasmus_cipru: '<div class="ec"><div class="eh"><span class="ebg">&#127464;&#127486; Cipru 2025</span><h3>Mobilitate Elevi</h3></div><p class="ed">Mobilitate internationala cu elevii in Cipru, activitati de colaborare si incluziune.</p><div class="esec"><h4>&#128247; Jurnal zilnic</h4><div class="ddays"><a class="dday" href="https://www.facebook.com/photo/?fbid=1429833342480847" target="_blank">Z.1</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1430583615739153" target="_blank">Z.2</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1431461472318034" target="_blank">Z.3</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1432328945564620" target="_blank">Z.4</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1436047861859395" target="_blank">Z.5</a></div></div><div class="esec"><h4>&#128248; Galerie foto Cipru</h4><div class="pgal"><img src="erasmus_files/cipru_1.jpg" onclick="openLB(this)" alt="Cipru 1" class="gimg" loading="lazy"><img src="erasmus_files/cipru_2.jpg" onclick="openLB(this)" alt="Cipru 2" class="gimg" loading="lazy"><img src="erasmus_files/cipru_3.jpg" onclick="openLB(this)" alt="Cipru 3" class="gimg" loading="lazy"><img src="erasmus_files/cipru_4.jpg" onclick="openLB(this)" alt="Cipru 4" class="gimg" loading="lazy"><img src="erasmus_files/cipru_5.jpg" onclick="openLB(this)" alt="Cipru 5" class="gimg" loading="lazy"><img src="erasmus_files/cipru_extra1.jpeg" onclick="openLB(this)" alt="" class="gimg" loading="lazy"><img src="erasmus_files/cipru_extra2.jpeg" onclick="openLB(this)" alt="" class="gimg" loading="lazy"><img src="erasmus_files/cipru_extra3.jpeg" onclick="openLB(this)" alt="" class="gimg" loading="lazy"><img src="erasmus_files/cipru_extra4.jpeg" onclick="openLB(this)" alt="" class="gimg" loading="lazy"></div></div></div>',
+  erasmus_diseminare: '<div class="ec"><h3>&#128226; Diseminare si Valorificare</h3><div class="emc"><div class="emcd" onclick="go(\'erasmus_activitati_dis\')"><div class="emf">&#128203;</div><div class="emi"><strong>Activitati de diseminare</strong><span>Consilii, simpozioane, reviste</span></div><span class="ea">&#8594;</span></div><div class="emcd" onclick="go(\'erasmus_online\')"><div class="emf">&#128216;</div><div class="emi"><strong>Diseminare online</strong><span>Facebook - jurnal zilnic</span></div><span class="ea">&#8594;</span></div><div class="emcd" onclick="go(\'erasmus_bune_practici\')"><div class="emf">&#128161;</div><div class="emi"><strong>Bune practici</strong><span>Lectii digitale, jocuri, CDS-uri</span></div><span class="ea">&#8594;</span></div></div></div>',
+  erasmus_activitati_dis: '<div class="ec"><h3>&#128211; Activitati de Diseminare</h3><div class="esec"><h4>Prezentari in Consilii Profesorale</h4><a class="fbk" href="https://www.facebook.com/photo/?fbid=1085708810226637" target="_blank">&#128216; Conferinta lansare ERASMUS+ - Consiliu Profesoral</a><a class="doc-link" href="erasmus_files/ppt_malta.pdf" target="_blank">&#128202; PPT Diseminare Malta (descarca)</a><a class="fbk" href="https://www.facebook.com/photo/?fbid=1146513704146147" target="_blank">&#128216; Diseminare Malta - Consiliu Profesoral</a><a class="doc-link" href="erasmus_files/diseminare_centrul_metodic.pdf" target="_blank">&#128196; Diseminare Malta - Centrul Metodic Nr. 6 (cls. IV-a)</a><a class="fbk" href="https://www.facebook.com/photo/?fbid=1277532594377590" target="_blank">&#128216; Diseminare Finlanda - Consiliu Profesoral</a><a class="doc-link" href="erasmus_files/diseminare_centrul_metodic2.pdf" target="_blank">&#128196; Diseminare - Centrul Metodic (cls. III-a)</a><a class="fbk" href="https://www.facebook.com/photo/?fbid=1237160798414770" target="_blank">&#128216; Diseminare Finlanda - Centrul Metodic cls. III-a</a><a class="fbk" href="https://www.facebook.com/photo/?fbid=1271329581664558" target="_blank">&#128216; Diseminare Finlanda - Cerc pedagogic lb. engleza</a><a class="fbk" href="https://www.facebook.com/photo/?fbid=1176755567989539" target="_blank">&#128216; Diseminare proiect - Conferinta EducatiE+ pentru Ramnicu Sarat</a></div><div class="esec"><h4>Proiect eTwinning</h4><a class="doc-link" href="erasmus_files/etwinning.pdf" target="_blank">&#128196; TechLingua Harmony - Vrinceanu Alina Nicoleta</a></div><div class="esec"><h4>&#127942; Simpozion</h4><div class="pgal" style="grid-template-columns:repeat(2,1fr);"><img src="erasmus_files/simpozion.jpg" onclick="openLB(this)" alt="Simpozion ERASMUS+" class="gimg" loading="lazy"></div><a class="fbk" href="https://www.facebook.com/photo/?fbid=1496913965772784" target="_blank">&#128216; Simpozion ERASMUS+ - Facebook</a></div><div class="esec"><h4>&#128240; Revistele Scolii - Pulsul Scolii</h4><div class="reviste"><div class="revista"><span>Nr. 1 - prof. Oprea Diana-Manuela</span><div><a href="erasmus_files/revista_nr1.pdf" target="_blank" class="ebtn">&#128196; Revista</a><a href="erasmus_files/coperta_nr1.pdf" target="_blank" class="ebtn">&#128248; Coperta</a></div></div><div class="revista"><span>Nr. 2 - prof. Vrinceanu Alina-Nicoleta</span><div><a href="erasmus_files/revista_nr2.pdf" target="_blank" class="ebtn">&#128196; Revista</a><a href="erasmus_files/coperta_nr2.pdf" target="_blank" class="ebtn">&#128248; Coperta</a></div></div><div class="revista"><span>Nr. 3 - prof. Dinu Olguta</span><div><a href="erasmus_files/revista_nr3.pdf" target="_blank" class="ebtn">&#128196; Revista</a><a href="erasmus_files/coperta_nr3.pdf" target="_blank" class="ebtn">&#128248; Coperta</a></div></div><div class="revista"><span>Nr. 4 - prof. Nechifor Gina</span><div><a href="erasmus_files/revista_nr4.pdf" target="_blank" class="ebtn">&#128196; Revista</a><a href="erasmus_files/coperta_nr4.pdf" target="_blank" class="ebtn">&#128248; Coperta</a></div></div><div class="revista"><span>Nr. 5 - prof. Barbu Olga</span><div><a href="erasmus_files/revista_nr5.pdf" target="_blank" class="ebtn">&#128196; Revista</a></div></div><div class="revista"><span>Nr. 6 - prof. Olaru Florentina</span><div><a href="erasmus_files/revista_nr6.pdf" target="_blank" class="ebtn">&#128196; Revista</a><a href="erasmus_files/coperta_revista_nr6.pdf" target="_blank" class="ebtn">&#128248; Coperta</a></div></div><div class="revista"><span>Nr. 7 - prof. Toader Marinela</span><div><a href="erasmus_files/revista_nr7.pdf" target="_blank" class="ebtn">&#128196; Revista</a><a href="erasmus_files/coperta_revista_nr7.pdf" target="_blank" class="ebtn">&#128248; Coperta</a></div></div></div></div><div class="esec"><h4>&#128188; Afise si Flyere</h4><a class="fbk" href="https://www.facebook.com/photo/?fbid=1082940417170143" target="_blank">&#128216; Afise si flyere proiect - Facebook</a></div></div>',
+  erasmus_online: '<div class="ec"><h3>&#128216; Diseminare Online - Facebook</h3><div class="esec"><h4>&#127474;&#127481; Malta - Jurnal zilnic</h4><div class="ddays"><a class="dday" href="https://www.facebook.com/photo/?fbid=1107121554752029" target="_blank">Z.1</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1107346251396226" target="_blank">Z.2</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1107136774750507" target="_blank">Z.3</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1107850744679110" target="_blank">Z.4</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1108686214595563" target="_blank">Z.5</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1109421021188749" target="_blank">Z.6</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1110252981105553" target="_blank">Z.7</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1111038614360323" target="_blank">Z.8</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1111699250960926" target="_blank">Z.9</a></div></div><div class="esec"><h4>&#127467;&#127470; Finlanda - Jurnal zilnic</h4><div class="ddays"><a class="dday" href="https://www.facebook.com/photo/?fbid=1214860500644800" target="_blank">Z.1</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1214990550631795" target="_blank">Z.2</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1215598637237653" target="_blank">Z.3</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1216689857128531" target="_blank">Z.4</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1218358773628306" target="_blank">Z.5</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1218365796960937" target="_blank">Z.6</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1219352836862233" target="_blank">Z.7</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1220369153427268" target="_blank">Z.8</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1221162606681256" target="_blank">Z.9</a></div></div><div class="esec"><h4>&#127464;&#127486; Cipru (Elevi) - Jurnal zilnic</h4><div class="ddays"><a class="dday" href="https://www.facebook.com/photo/?fbid=1429833342480847" target="_blank">Z.1</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1430583615739153" target="_blank">Z.2</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1431461472318034" target="_blank">Z.3</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1432328945564620" target="_blank">Z.4</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1436047861859395" target="_blank">Z.5</a></div></div><div class="esec"><h4>Proiect eTwinning</h4><a class="doc-link" href="erasmus_files/etwinning.pdf" target="_blank">&#128196; TechLingua Harmony - ESEP</a></div></div>',
+  erasmus_bune_practici: '<div class="ec"><h3>&#128161; Bune Practici Educationale</h3><div class="esec"><h4>&#128241; Lectii Digitale (Livresq)</h4><div class="lqgr"><a class="lq-c" href="https://view.livresq.com/view/68138cf3cc30eb000a3da331/" target="_blank"><div class="lq-i">&#128218;</div><div class="lq-l">Lb. romana - Parti de vorbire, cls. IV-a</div><div class="lq-b">Livresq</div></a><a class="lq-c" href="erasmus_files/scenariu_masurarea_lungimilor.pdf" target="_blank"><div class="lq-i">&#128218;</div><div class="lq-l">Matematica - Metrul, cls. III-a</div><div class="lq-b">Livresq</div></a><a class="lq-c" href="https://library.livresq.com/details/6907a4594eafca0009c2d8da" target="_blank"><div class="lq-i">&#128218;</div><div class="lq-l">Comunicare - Sunete si litere A,M,U,N - cls. preg.</div><div class="lq-b">Livresq</div></a><a class="lq-c" href="https://library.livresq.com/details/68112841df992800090089dc" target="_blank"><div class="lq-i">&#128218;</div><div class="lq-l">Lb. romana - Ursul pacalit de vulpe - cls. II-a</div><div class="lq-b">Livresq</div></a><a class="lq-c" href="https://library.livresq.com/details/690a221d4eafca0009c2eb49" target="_blank"><div class="lq-i">&#128218;</div><div class="lq-l">Matematica - Inmultirea cu 10, 100 si 1000</div><div class="lq-b">Livresq</div></a><a class="lq-c" href="https://library.livresq.com/details/680f9391df99280009007eca" target="_blank"><div class="lq-i">&#128218;</div><div class="lq-l">Lb. romana - Fram, ursul polar</div><div class="lq-b">Livresq</div></a><a class="lq-c" href="erasmus_files/tema_copilaria.pdf" target="_blank"><div class="lq-i">&#128218;</div><div class="lq-l">Lb. romana - Tema: Copilaria</div><div class="lq-b">Livresq</div></a></div></div><div class="esec"><h4>&#127918; Jocuri Educationale Online (Wordwall)</h4><div class="wwgr"><a class="ww-c" href="https://wordwall.net/ro/resource/7295250" target="_blank"><div class="ww-i">&#127918;</div><div class="ww-l">Potriveste litera mica cu litera mare</div><div class="ww-b">Wordwall</div></a><a class="ww-c" href="https://wordwall.net/ro/resource/100235147" target="_blank"><div class="ww-i">&#127918;</div><div class="ww-l">Identifica pozitia sunetelor a,m,i</div><div class="ww-b">Wordwall</div></a><a class="ww-c" href="https://wordwall.net/ro/resource/100234679" target="_blank"><div class="ww-i">&#127918;</div><div class="ww-l">Citim silabe/cuvinte a,m,i</div><div class="ww-b">Wordwall</div></a><a class="ww-c" href="https://wordwall.net/ro/resource/101617506" target="_blank"><div class="ww-i">&#127918;</div><div class="ww-l">Citim silabe/cuvinte a,m,i,u,r</div><div class="ww-b">Wordwall</div></a><a class="ww-c" href="https://wordwall.net/ro/resource/7294281" target="_blank"><div class="ww-i">&#127918;</div><div class="ww-l">Citim silabe/cuvinte a,m,u,n</div><div class="ww-b">Wordwall</div></a><a class="ww-c" href="https://wordwall.net/ro/resource/102165921" target="_blank"><div class="ww-i">&#127918;</div><div class="ww-l">Citim propozitii a,m,i,u,r,e,n</div><div class="ww-b">Wordwall</div></a><a class="ww-c" href="https://wordwall.net/ro/resource/9471902" target="_blank"><div class="ww-i">&#127918;</div><div class="ww-l">Verificare - Croitorul cel viteaz</div><div class="ww-b">Wordwall</div></a><a class="ww-c" href="https://wordwall.net/ro/resource/7294834" target="_blank"><div class="ww-i">&#127918;</div><div class="ww-l">Verificare - Neghinita/Capra cu trei iezi</div><div class="ww-b">Wordwall</div></a><a class="ww-c" href="https://wordwall.net/ro/resource/106364396" target="_blank"><div class="ww-i">&#127918;</div><div class="ww-l">Partile de vorbire</div><div class="ww-b">Wordwall</div></a><a class="ww-c" href="https://wordwall.net/ro/resource/91053660" target="_blank"><div class="ww-i">&#127918;</div><div class="ww-l">Ursul pacalit de vulpe</div><div class="ww-b">Wordwall</div></a></div></div><div class="esec"><h4>&#127807; Activitati Nonformale</h4><a class="doc-link" href="erasmus_files/plan_lectie_simetria_vi.pdf" target="_blank">&#128196; Plan lectie - Simetria fata de o dreapta (cls. VI-a, outdoor)</a><a class="doc-link" href="erasmus_files/activitati_nonformale.pdf" target="_blank">&#128196; Activitati si jocuri nonformale</a><a class="doc-link" href="erasmus_files/ppt_bune_practici.pdf" target="_blank">&#128202; PPT Bune practici incluziune digitala (descarca)</a></div><div class="esec"><h4>&#128218; CDS-uri avizate ISJ</h4><a class="doc-link" href="erasmus_files/cds_labirintul_matematicii.pdf" target="_blank">&#128196; CDS - Labirintul matematicii</a></div><div class="esec"><h4>&#127909; Videoclipuri Didactice</h4><div class="ytgr"><a class="yt-c" href="https://youtu.be/Qg8gqmESV_8" target="_blank"><div class="yt-t"><img src="https://img.youtube.com/vi/Qg8gqmESV_8/mqdefault.jpg" alt="Alfabetul istoriei"><div class="yt-p">&#9654;</div></div><div class="yt-l">Alfabetul istoriei</div></a><a class="yt-c" href="https://youtu.be/pHhrSkLqKzQ" target="_blank"><div class="yt-t"><img src="https://img.youtube.com/vi/pHhrSkLqKzQ/mqdefault.jpg" alt="Preistoria in spatiul romanesc"><div class="yt-p">&#9654;</div></div><div class="yt-l">Preistoria in spatiul romanesc</div></a><a class="yt-c" href="https://youtu.be/xK1g_hCCc_E" target="_blank"><div class="yt-t"><img src="https://img.youtube.com/vi/xK1g_hCCc_E/mqdefault.jpg" alt="Alexandru Macedon"><div class="yt-p">&#9654;</div></div><div class="yt-l">Alexandru Macedon</div></a><a class="yt-c" href="https://youtu.be/xJ7inqt9RXk" target="_blank"><div class="yt-t"><img src="https://img.youtube.com/vi/xJ7inqt9RXk/mqdefault.jpg" alt="Razboiul troian"><div class="yt-p">&#9654;</div></div><div class="yt-l">Razboiul troian</div></a><a class="yt-c" href="https://youtu.be/oAVCWnO5DuI" target="_blank"><div class="yt-t"><img src="https://img.youtube.com/vi/oAVCWnO5DuI/mqdefault.jpg" alt="Fondarea Romei"><div class="yt-p">&#9654;</div></div><div class="yt-l">Fondarea Romei</div></a><a class="yt-c" href="https://youtu.be/09jwkyM8Ddw" target="_blank"><div class="yt-t"><img src="https://img.youtube.com/vi/09jwkyM8Ddw/mqdefault.jpg" alt="Statul roman"><div class="yt-p">&#9654;</div></div><div class="yt-l">Statul roman</div></a><a class="yt-c" href="https://youtu.be/qHk9H_X51lU" target="_blank"><div class="yt-t"><img src="https://img.youtube.com/vi/qHk9H_X51lU/mqdefault.jpg" alt="Roma antica - Test cls. V"><div class="yt-p">&#9654;</div></div><div class="yt-l">Roma antica - Test cls. V</div></a><a class="yt-c" href="https://youtu.be/xck08pBGWQI" target="_blank"><div class="yt-t"><img src="https://img.youtube.com/vi/xck08pBGWQI/mqdefault.jpg" alt="Cum a aparut crestinismul?"><div class="yt-p">&#9654;</div></div><div class="yt-l">Cum a aparut crestinismul?</div></a><a class="yt-c" href="https://youtu.be/1Xfy-zzREN0" target="_blank"><div class="yt-t"><img src="https://img.youtube.com/vi/1Xfy-zzREN0/mqdefault.jpg" alt="Tudor Vladimirescu 1821"><div class="yt-p">&#9654;</div></div><div class="yt-l">Tudor Vladimirescu 1821</div></a><a class="yt-c" href="https://youtu.be/bSpLeg2v_qs" target="_blank"><div class="yt-t"><img src="https://img.youtube.com/vi/bSpLeg2v_qs/mqdefault.jpg" alt="Revolutia de la 1848"><div class="yt-p">&#9654;</div></div><div class="yt-l">Revolutia de la 1848</div></a><a class="yt-c" href="https://youtu.be/uRBui4rqFh4" target="_blank"><div class="yt-t"><img src="https://img.youtube.com/vi/uRBui4rqFh4/mqdefault.jpg" alt="Unirea Principatelor"><div class="yt-p">&#9654;</div></div><div class="yt-l">Unirea Principatelor</div></a><a class="yt-c" href="https://youtu.be/KI0v-zT4gj8" target="_blank"><div class="yt-t"><img src="https://img.youtube.com/vi/KI0v-zT4gj8/mqdefault.jpg" alt="Mos Ion Roata si Unirea"><div class="yt-p">&#9654;</div></div><div class="yt-l">Mos Ion Roata si Unirea</div></a><a class="yt-c" href="https://youtu.be/uJPu_0GCkvY" target="_blank"><div class="yt-t"><img src="https://img.youtube.com/vi/uJPu_0GCkvY/mqdefault.jpg" alt="Primul Razboi Mondial"><div class="yt-p">&#9654;</div></div><div class="yt-l">Primul Razboi Mondial</div></a><a class="yt-c" href="https://youtu.be/bsTxqRTcK5c" target="_blank"><div class="yt-t"><img src="https://img.youtube.com/vi/bsTxqRTcK5c/mqdefault.jpg" alt="Al Doilea Razboi Mondial"><div class="yt-p">&#9654;</div></div><div class="yt-l">Al Doilea Razboi Mondial</div></a><a class="yt-c" href="https://youtu.be/HPSfsgWg-iA" target="_blank"><div class="yt-t"><img src="https://img.youtube.com/vi/HPSfsgWg-iA/mqdefault.jpg" alt="Islamul - Schita lectiei"><div class="yt-p">&#9654;</div></div><div class="yt-l">Islamul - Schita lectiei</div></a></div></div></div>',
+  erasmus_resurse: '<div class="ec"><h3>&#128230; Resurse si Materiale</h3><div class="esec"><h4>&#128203; Fise de Lucru</h4><a class="doc-link" href="erasmus_files/fisa_copilaria.pdf" target="_blank">&#128196; Fisa - Copilaria (cls. IV-a)</a></div><div class="esec"><h4>&#129309; Parteneriate si Consortii</h4><p style="font-size:.86rem;color:var(--muted);">Mobilitati in consortiu cu <strong>CCD Buzau</strong>.</p></div></div>',
+  erasmus_galerie: '<div class="ec"><h3>&#128247; Galerie Foto-Video</h3><div class="esec"><h4>&#127474;&#127481; Malta - Jurnal zilnic Facebook</h4><div class="ddays"><a class="dday" href="https://www.facebook.com/photo/?fbid=1107121554752029" target="_blank">Z.1</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1107346251396226" target="_blank">Z.2</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1107136774750507" target="_blank">Z.3</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1107850744679110" target="_blank">Z.4</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1108686214595563" target="_blank">Z.5</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1109421021188749" target="_blank">Z.6</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1110252981105553" target="_blank">Z.7</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1111038614360323" target="_blank">Z.8</a><a class="dday" href="https://www.facebook.com/photo/?fbid=1111699250960926" target="_blank">Z.9</a></div><a class="fbk" href="https://www.facebook.com/media/set/?set=a.1107114011419450&type=3" target="_blank">&#128216; Album foto complet Malta</a></div><div class="esec"><h4>&#127467;&#127470; Finlanda - Galerie foto</h4><div class="pgal"><img src="erasmus_files/finlanda_1.jpg" onclick="openLB(this)" alt="Finlanda 1" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_2.jpg" onclick="openLB(this)" alt="Finlanda 2" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_3.jpg" onclick="openLB(this)" alt="Finlanda 3" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_4.jpg" onclick="openLB(this)" alt="Finlanda 4" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_5.jpg" onclick="openLB(this)" alt="Finlanda 5" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_6.jpg" onclick="openLB(this)" alt="Finlanda 6" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_7.jpg" onclick="openLB(this)" alt="Finlanda 7" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_8.jpg" onclick="openLB(this)" alt="Finlanda 8" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_9.jpg" onclick="openLB(this)" alt="Finlanda 9" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_10.jpg" onclick="openLB(this)" alt="Finlanda 10" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_11.jpg" onclick="openLB(this)" alt="Finlanda 11" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_12.jpg" onclick="openLB(this)" alt="Finlanda 12" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_13.jpg" onclick="openLB(this)" alt="Finlanda 13" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_14.jpg" onclick="openLB(this)" alt="Finlanda 14" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_15.jpg" onclick="openLB(this)" alt="Finlanda 15" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_16.jpg" onclick="openLB(this)" alt="Finlanda 16" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_17.jpg" onclick="openLB(this)" alt="Finlanda 17" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_18.jpg" onclick="openLB(this)" alt="Finlanda 18" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_19.jpg" onclick="openLB(this)" alt="Finlanda 19" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_20.jpg" onclick="openLB(this)" alt="Finlanda 20" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_21.jpg" onclick="openLB(this)" alt="Finlanda 21" class="gimg" loading="lazy"><img src="erasmus_files/finlanda_22.jpg" onclick="openLB(this)" alt="Finlanda 22" class="gimg" loading="lazy"></div></div><div class="esec"><h4>&#127464;&#127486; Cipru - Galerie foto</h4><div class="pgal"><img src="erasmus_files/cipru_1.jpg" onclick="openLB(this)" alt="Cipru 1" class="gimg" loading="lazy"><img src="erasmus_files/cipru_2.jpg" onclick="openLB(this)" alt="Cipru 2" class="gimg" loading="lazy"><img src="erasmus_files/cipru_3.jpg" onclick="openLB(this)" alt="Cipru 3" class="gimg" loading="lazy"><img src="erasmus_files/cipru_4.jpg" onclick="openLB(this)" alt="Cipru 4" class="gimg" loading="lazy"><img src="erasmus_files/cipru_5.jpg" onclick="openLB(this)" alt="Cipru 5" class="gimg" loading="lazy"><img src="erasmus_files/cipru_extra1.jpeg" onclick="openLB(this)" alt="" class="gimg" loading="lazy"><img src="erasmus_files/cipru_extra2.jpeg" onclick="openLB(this)" alt="" class="gimg" loading="lazy"><img src="erasmus_files/cipru_extra3.jpeg" onclick="openLB(this)" alt="" class="gimg" loading="lazy"><img src="erasmus_files/cipru_extra4.jpeg" onclick="openLB(this)" alt="" class="gimg" loading="lazy"></div></div><div class="esec"><h4>&#127942; Diseminare si Simpozion</h4><div class="pgal" style="grid-template-columns:repeat(3,1fr);"><img src="erasmus_files/diseminare_1.jpg" onclick="openLB(this)" alt="" class="gimg" loading="lazy"><img src="erasmus_files/diseminare_2.jpg" onclick="openLB(this)" alt="" class="gimg" loading="lazy"><img src="erasmus_files/diseminare_3.jpg" onclick="openLB(this)" alt="" class="gimg" loading="lazy"><img src="erasmus_files/simpozion.jpg" onclick="openLB(this)" alt="" class="gimg" loading="lazy"></div></div></div>'};
+
+function pdf(items,pid){
+  return items.map(function(d,i){
+    var uid='fr-'+pid+'-'+i;
+    return '<div class="pw"><div class="ph2"><div class="pi">&#128196;</div><div class="pinfo"><strong>'+d.l+'</strong><span>'+d.u.split('/').pop()+'</span></div><div class="pacts"><a class="bv" href="#" onclick="tv(\''+uid+'\',\''+d.u+'\');return false;">&#128065; Previzualizează</a><a class="bd" href="'+d.u+'" target="_blank">&#11015; Descarcă</a></div></div><iframe id="'+uid+'" class="pviewer" title="'+d.l+'"></iframe></div>';
+  }).join('');
+}
+
+function buildAll(){
+  var h='';
+  Object.keys(PAGES).forEach(function(id){
+    var p=PAGES[id];
+    h+='<div class="pg" id="pg-'+id+'">';
+    h+='<div class="ph"><div class="ph-in"><h2>'+p.t+'</h2>'+(p.sub?'<p>'+p.sub+'</p>':'')+'</div></div>';
+    h+='<div class="bc"><div class="bc-in">Acasă › '+p.bc+' › <b>'+p.t+'</b></div></div>';
+    h+='<div class="pc">';
+    if(p.desc) h+='<p>'+p.desc+'</p>';
+    if(p.note) h+='<div class="note">'+p.note+'</div>';
+    if(p.extra && EXTRAS[p.extra]) h+=EXTRAS[p.extra];
+    if(p.pdfs && p.pdfs.length) h+=pdf(p.pdfs,id);
+    h+='</div></div>';
+  });
+  document.getElementById('dyn').innerHTML=h;
+}
+
+function tv(uid,url){
+  var fr=document.getElementById(uid);
+  if(!fr) return;
+  if(fr.classList.contains('open')){
+    fr.classList.remove('open');
+    fr.src='about:blank';
+    return;
+  }
+  // Fisiere locale erasmus_files/ -> iframe direct (local + server)
+  if(url.indexOf('erasmus_files/')!==-1){
+    fr.src=url;
+    fr.classList.add('open');
+    return;
+  }
+  // Fisiere externe: local nu merge, pe server merge prin Google Docs
+  var isLocal=window.location.protocol==='file:';
+  if(isLocal){
+    fr.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;background:#1a3a6b;color:#fff;gap:16px;padding:20px;"><div style="font-size:3rem;">&#128196;</div><p style="font-size:.9rem;text-align:center;max-width:380px;line-height:1.6;">Previzualizarea fisierelor externe nu este disponibila local.<br>Functioneaza pe server.</p><a href="'+url+'" target="_blank" style="background:#c8a020;color:#1a1a1a;padding:10px 22px;border-radius:8px;text-decoration:none;font-weight:700;">Deschide in tab nou</a></div>';
+    fr.classList.add('open');
+  } else {
+    fr.src='https://docs.google.com/gview?url='+encodeURIComponent(url)+'&embedded=true';
+    fr.classList.add('open');
+  }
+}
+
+function go(id){
+  document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('on');});
+  var el=document.getElementById('pg-'+id);
+  if(el) el.classList.add('on');
+  else{document.getElementById('pg-acasa').classList.add('on');}
+  document.querySelectorAll('.ni>a').forEach(function(a){a.classList.remove('act');});
+  if(id==='acasa'){var a=document.getElementById('na-acasa');if(a)a.classList.add('act');}
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(window.innerWidth<=900) document.getElementById('nw').classList.remove('open');
+}
+
+function toggleNav(){document.getElementById('nw').classList.toggle('open');}
+
+document.querySelectorAll('.ni>span').forEach(function(s){
+  s.addEventListener('click',function(){if(window.innerWidth<=900){var dd=this.parentElement.querySelector('.dd');if(dd)dd.classList.toggle('mob');}});
+});
+document.querySelectorAll('.has-s>a').forEach(function(a){
+  a.addEventListener('click',function(e){if(window.innerWidth<=900){e.preventDefault();var ss=this.parentElement.querySelector('.ss');if(ss)ss.classList.toggle('mob');}});
+});
+
+buildAll();
+
+// Lightbox
+var _lb = document.createElement('div');
+_lb.id='lb';
+_lb.innerHTML='<img id="lb-img">';
+_lb.onclick=function(){this.style.display='none';};
+document.body.appendChild(_lb);
+function openLB(el){
+  document.getElementById('lb-img').src=el.src;
+  document.getElementById('lb').style.display='flex';
+}
+
+</script>
+</body>
+</html>
